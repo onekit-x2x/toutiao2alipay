@@ -1,0 +1,25 @@
+<import src="../../../common/head.axml"></import>
+<import src="../../../common/foot.axml"></import>
+
+<view  class="container">
+  <template  is="head" data="{{title: 'toast'}}"></template>
+
+  <view  class="page-body">
+    <view  class="btn-area">
+      <view  class="body-view">
+        <wx-button  type="default" onTap="toast1Tap">点击弹出默认toast</wx-button>
+      </view>
+      <view  class="body-view">
+        <wx-button  type="default" onTap="toast2Tap">点击弹出设置duration的toast</wx-button>
+      </view>
+      <view  class="body-view">
+        <wx-button  type="default" onTap="toast3Tap">点击弹出显示loading的toast</wx-button>
+      </view>
+      <view  class="body-view">
+        <wx-button  type="default" onTap="hideToast">点击隐藏toast</wx-button>
+      </view>
+    </view>
+  </view>
+
+  <template  is="foot"></template>
+</view>

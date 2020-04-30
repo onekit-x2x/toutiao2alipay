@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "获取手机网络状态",
+  "usingComponents": {
+    "wx-ad": "/onekit/ui/ad/ad",
+    "wx-button": "/onekit/ui/button/button",
+    "wx-video": "/onekit/ui/video/video"
+  }
+}

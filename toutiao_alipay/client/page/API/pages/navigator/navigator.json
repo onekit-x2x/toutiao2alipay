@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "页面跳转",
+  "usingComponents": {
+    "wx-ad": "/onekit/ui/ad/ad",
+    "wx-button": "/onekit/ui/button/button",
+    "wx-video": "/onekit/ui/video/video"
+  }
+}

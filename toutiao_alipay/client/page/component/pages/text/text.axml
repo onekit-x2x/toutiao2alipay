@@ -1,0 +1,18 @@
+<import src="../../../common/head.axml"></import>
+<import src="../../../common/foot.axml"></import>
+
+<view  class="container">
+  <template  is="head" data="{{title: 'text'}}"></template>
+
+  <view  class="page-body">
+    <view  class="page-section page-section-spacing">
+      <view  class="text-box" scroll-y="true" scroll-top="{{scrollTop}}">
+        <text >{{text}}</text>
+      </view>
+      <wx-button  disabled="{{!canAdd}}" onTap="add">add line</wx-button>
+      <wx-button  disabled="{{!canRemove}}" onTap="remove">remove line</wx-button>
+    </view>
+  </view>
+
+  <template  is="foot"></template>
+</view>

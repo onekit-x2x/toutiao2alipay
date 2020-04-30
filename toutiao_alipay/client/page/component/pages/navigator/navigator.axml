@@ -1,0 +1,20 @@
+<import src="../../../common/head.axml"></import>
+<import src="../../../common/foot.axml"></import>
+
+<view  class="container">
+  <template  is="head" data="{{title: 'navigator'}}"></template>
+
+  <view  class="page-body">
+    <view  class="btn-area">
+      <navigator  url="navigate?title=navigate" hover-class="navigator-hover">
+        <wx-button  type="default">跳转到新页面</wx-button>
+      </navigator>
+      <navigator  url="redirect?title=redirect" redirect hover-class="other-navigator-hover">
+        <wx-button  type="default">在当前页打开</wx-button>
+      </navigator>
+      
+    </view>
+  </view>
+
+  <template  is="foot"></template>
+</view>

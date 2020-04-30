@@ -1,0 +1,10 @@
+<import src="../../../common/head.axml"></import>
+<import src="../../../common/foot.axml"></import>
+
+<view  class="wrap">
+  <template  is="head" data="{{title: 'video'}}"></template>
+ <wx-video  id="myVideo" auto enable-danmu="true" src="https://b.bdstatic.com/swan-temp/940fe716b0eaad38f47b209d61657490.mp4"></wx-video>
+  <wx-button  type="primary" onTap="play">play</wx-button>
+    <wx-button  type="primary" onTap="pause">pause</wx-button>
+    <wx-button  type="primary" onTap="seek">seek</wx-button>
+</view>

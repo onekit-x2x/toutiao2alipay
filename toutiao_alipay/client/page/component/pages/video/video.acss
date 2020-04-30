@@ -1,0 +1,12 @@
+.wrap {
+    padding: 50rpx 30rpx;
+}
+
+.wrap wx-video{
+    width: 100%;
+    margin-bottom: 30rpx;
+}
+
+.wrap wx-button{
+    margin-bottom: 50rpx;
+}
