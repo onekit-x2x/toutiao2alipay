@@ -1,0 +1,6 @@
+<checkbox-group
+class="onekit-checkbox-group {{Class}}"
+style="{{Style}}"
+>
+<slot></slot>
+</checkbox-group>

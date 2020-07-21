@@ -1,0 +1,12 @@
+<picker-view
+class="onekit-picker-view {{Class}}"
+style="{{Style}}"
+value="{{value}}"
+indicator-style="{{indicatorStyle}}"
+indicator-class="{{indicatorClass}}"
+mask-style="{{maskStyle}}"
+mask-class="{{maskClass}}"
+>
+<slot>
+</slot>
+</picker-view>

@@ -1,8 +1,10 @@
 {
   "defaultTitle": "navigatePage",
   "usingComponents": {
-    "wx-ad": "/onekit/ui/ad/ad",
-    "wx-button": "/onekit/ui/button/button",
-    "wx-video": "/onekit/ui/video/video"
+    "onekit-ad": "/onekit/ui/ad/ad",
+    "onekit-button": "/onekit/ui/button/button",
+    "onekit-video": "/onekit/ui/video/video",
+    "onekit-view": "/onekit/ui/view/view",
+    "onekit-navigator": "/onekit/ui/navigator/navigator"
   }
 }

@@ -1,0 +1,8 @@
+<canvas
+class="onekit-canvas {{Class}}"
+style="{{Style}}"
+id="{{canvasId}}"
+disable-scroll="{{disableScroll}}"
+>
+<slot></slot>
+</canvas>

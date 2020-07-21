@@ -1,4 +1,7 @@
 import onekit from "./onekit"
+import VideoContext from "./api/VideoContext"
+import CanvasContext from "./api/CanvasContext"
+
 export default class tt {
   /////////////////// animation //////////////////////////
   static createAnimation(object) {
@@ -186,11 +189,14 @@ export default class tt {
     canvasContext.draw();
   }
   static createContext() {
-    var context = new CanvasContext();
+    var context = new Context();
     return context;
   }
-  static createCanvasContext(object) {
-    return my.createCanvasContext(object);
+  static createCanvasContext(canvasId) {
+    return new CanvasContext(my.createCanvasContext(canvasId));
+  }
+  static createVideoContext(videoId,ui) { 
+    return new VideoContext(my.createVideoContext(videoId)); 
   }
   static canvasToTempFilePath(object) {
     var object2 = {
@@ -881,40 +887,41 @@ export default class tt {
   static offLocalServiceFound(callback) { return my.offLocalServiceFound(callback); }
   static offLocalServiceDiscoveryStop(callback) { return my.offLocalServiceDiscoveryStop(callback); }
   ///////// Open Interface //////////
-  static checkSession(object) {
-    var object2 = {};
+  static _checkSession() {
     var now = new Date().getTime();
-    if (my._sessoion && now - my._sessoion <= 7200 * 1000) {
-      var result = { errMsg: "checkSession:ok" };
+    return getApp().onekitwx._jscode && getApp().onekitwx._login && now <= getApp().onekitwx._login + 1000 * 60 * 60 * 24 * 3;
+  }
+  
+  static checkSession(object) {
+    if (tt._checkSession()) {
       if (object.success) {
-        object.success(result);
+        object.success();
       }
       if (object.complete) {
-        object.complete(result);
+        object.complete();
       }
+
     } else {
-      var res = { errMsg: "checkSession:fail" };
       if (object.fail) {
-        object.fail(res);
+        object.fail();
       }
       if (object.complete) {
-        object.complete(res);
+        object.complete();
       }
     }
-    return my.getAuthCode(object2);
   }
 
-  static login = function(object) {
-    var that = this;
+  static login = function (object) {
+    // var that = this;
     if (!object) {
       return my.getAuthCode(object);
     }
     var object2 = {
       scopes: "auth_user"
     };
-    object2.success = function(res) {
-      my._sessoion = new Date().getTime();
-      getApp().onekit.jscode = res.authCode;
+    object2.success = function (res) {
+      getApp().onekitwx._jscode = res.authCode;
+      getApp().onekitwx._login = new Date().getTime();
       var result = { code: res.authCode };
       if (object.success) {
         object.success(result);
@@ -923,7 +930,7 @@ export default class tt {
         object.complete(complete);
       }
     }
-    object2.fail = function(res) {
+    object2.fail = function (res) {
       if (object.fail) {
         object.fail(res);
       }
@@ -931,13 +938,19 @@ export default class tt {
         object.complete(res);
       }
     }
-    return my.getAuthCode(object2);
+    if (tt._checkSession()) {
+      object2.success({ authCode: getApp().onekitwx._jscode });
+    } else {
+      my.getAuthCode(object2);
+    }
   };
   static getUserInfo(object) {
-    function getUserInfo(jscode, object) {
-      my.getAuthUserInfo({
-        success(res) {
-          var url = getApp().onekit.server + "userinfo";
+    tt.login({
+        success: (res) => {
+          console.log(res);
+          var code = res.code;
+          var withCredentials = object.withCredentials;
+          var url = getApp().onekitwx.server + "userinfo";
           my.httpRequest({
             url: url,
             header: {
@@ -945,9 +958,8 @@ export default class tt {
             },
             method: "POST",
             data: {
-              nickname: res.nickName,
-              avatarUrl: res.avatar,
-              js_code: jscode
+              withCredentials:withCredentials===true,
+              code: code
             },
             success(res) {
               if (object.success) {
@@ -957,23 +969,11 @@ export default class tt {
                 object.complete(res.data);
               }
             }, fail(res) {
-              console.log(res.data);
+              console.log(res);
             }
           });
         }
       });
-    }
-
-    var jscode = getApp().onekit.jscode;
-    if (jscode) {
-      getUserInfo(jscode, object);
-    } else {
-      my.login({
-        success: (res) => {
-          getUserInfo(res.code, object);
-        },
-      });
-    }
   };
   static getOpenData = function(object) {
     function success(opendata) {
@@ -1032,17 +1032,18 @@ export default class tt {
 
   };
   static getPhoneNumber = function(object) {
-    function getPhoneNumber(jscode, object) {
+    function getPhoneNumber(code, object) {
       my.getPhoneNumber({
         success(res) {
-          //var response = {
-          // response: "ZOELfBOrmRHNNiiVR4FmNrvV7Dmog5w/KFaNrfLugkDqdkPzlxBCzmfLBrtQlPptWix+1f9I07p5xNfwGgTgVA==",
-          // sign: "fD6CyFQeJTTgtM1uviy5uAm4YWiN3s0crGtD1v5XdXuDzFEBPTRYqGODcfzskAMFWNXJAK5Zx0/kk+6e9tn/N3U9RcrTgc6VLw7HM9fPTcz8CzVl1+b6fjsi0wWsADF53vKTurFn6HTSTEJvzbMMD5M2lgazni72tZHCNJSkeG1W+kjX/Mj5tfJXNkn6nlrtu1N6BxgsZdgDdkMQfIrWv2TOFlpx043LMBmk4CxXLpGvRfRcHLjixs5wEO1dfqENn6oj9hAQbPA8itYW4TvGlo5qhnzT+ya1rWcKrjn4zh7uvnr0hB0oPiqLu17txS5uIQIF0DJ2cC0k6kuOQLVwTQ=="
-          // }
-          //  JSON.parse(res.response);
-          var response = JSON.parse(res.response);
-          console.log(response);
-          var url = getApp().onekit.server + "phonenumber";
+          // var response = JSON.parse(res.response);
+          // var response = {
+          //   response: "ZOELfBOrmRHNNiiVR4FmNrvV7Dmog5w/KFaNrfLugkA9Zob82GRxtvm1kEAvYFl3PVs7cRjS3eBeosEppsvfwg==",
+          //  sign: "hZ3DwB5Ug2Koh/Gz9lbM4l3fHQhJ8MK7L6ZlcBj0QJHlG92mj1ov4OcpCAuFLL9pog7gDMFan6xB7aao11mbDhHY6URG8UOUNK7ZvBwuF1FHjH4M5F71BoJJ84yKlkXmSqm8x9226jIlfl6m0DSA8DCBz1J+WLldRDQROvtUopVcn9OOIiHXQPTBQuT3dnimwkoE+p5ZLNAKUbUZQnRHcjy4KWP3O2QODhcIsIRU9boi/0VbXrmAevynmpP5BsjfFGDnk7RdXQhbMJkXeK/FCtCcphJWnUEBwtDKqZmKjU02YbLBAhAiyOzW7QJktBq1/M/i8yvK5I3z7KOeFDuPSQ=="
+          //  };
+          // var data = JSON.stringify(response);
+          var data = JSON.parse(res.response);
+          console.log(data);
+          var url = getApp().onekitwx.server + "phonenumber";
           my.httpRequest({
             url: url,
             header: {
@@ -1050,9 +1051,8 @@ export default class tt {
             },
             method: "POST",
             data: {
-              response: response.response,
-              sign: response.sign,
-              js_code: jscode
+              data: JSON.stringify(data),
+              code: code
             },
             success(res) {
               var data = res.data;
@@ -1069,13 +1069,13 @@ export default class tt {
         }
       });
     }
-    var jscode = getApp().onekit.jscode;
-    if (jscode) {
-      getPhoneNumber(jscode, object);
+    var code = getApp().onekitwx._jscode;
+    if (code) {
+      getPhoneNumber(code, object);
     } else {
-      my.login({
+      my.getAuthCode({
         success: (res) => {
-          getPhoneNumber(res.code, object);
+          getPhoneNumber(res.authCode, object);
         },
       });
     }
@@ -1086,17 +1086,57 @@ export default class tt {
 
   static reportMonitor(object) { return my.reportMonitor(object) }
   static reportAnalytics(object) { return my.reportAnalytics(object) }
-  static requestPayment(object) {
-    var tradeNO = object.package.split("=")[1];
-    console.log(tradeNO);
-    var object2 = {
-      tradeNO: tradeNO,
-      success: object.success,
-      fail: object.fail,
-      complete: object.complete
-    };
-    return my.tradePay(object2);
-  };
+  static pay(object) { 
+    var url = getApp().onekitwx.server + "orderinfo";
+    my.httpRequest({
+      url : url,
+      method : "POST",
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data:{
+        orderInfo : JSON.stringify(object.orderInfo)
+      },
+      success(res) {
+        var data = {
+          out_order_no : res.data.out_trade_no
+        };
+        var tradeNO = res.data.trade_no;
+  my.tradePay({
+        tradeNO: tradeNO,  
+        success: function(res) {
+          console.log("sss",res);
+          if(object.getOrderStatus){
+            object.getOrderStatus(data);
+          }
+          if(object.success){
+            var ok = {
+              code : 0
+            };
+            object.success(ok);
+          }
+
+        },
+        fail: function(res) {
+           if(object.fail){
+             object.fail(res);
+           }
+           if(object.complete){
+             object.complete(res);
+           }
+       },
+    });
+     
+      },
+      fail(res) {
+        console.log(res);
+      },
+      fail(res){
+        console.log(res);
+      }
+    });
+
+  }
   static authorize(object) { return my.authorize(object) }
   static openSetting(object) { return my.openSetting(object) }
   static getSetting(object) { return my.getSetting(object) }

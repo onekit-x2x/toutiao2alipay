@@ -1,0 +1,10 @@
+<picker
+class="onekit-picker {{Class}}"
+style="{{Style}}"
+title="{{headerText}}"
+range="{{range}}"
+disabled="{{disabled}}"
+>
+<slot>
+</slot>
+</picker>
