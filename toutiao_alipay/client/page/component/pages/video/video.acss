@@ -2,11 +2,8 @@
     padding: 50rpx 30rpx;
 }
 
-.wrap wx-video{
+.wrap onekit-video{
     width: 100%;
     margin-bottom: 30rpx;
 }
 
-.wrap wx-button{
-    margin-bottom: 50rpx;
-}
