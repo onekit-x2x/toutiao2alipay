@@ -1,1 +1,9 @@
-<image class="onekit_image {{Class}}" style="{{Style}}" mode="{{mode}}" src="{{src}}"/>
+<image 
+  class="onekit_image {{Class}}" 
+  style="{{Style}}"
+  mode="{{mode}}"
+  src="{{src}}"
+
+  onError="image_error"
+  onLoad="image_load"
+   />
