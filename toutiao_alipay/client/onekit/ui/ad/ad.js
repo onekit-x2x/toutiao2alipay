@@ -4,6 +4,7 @@ Component({
   props: {
     Class:"",
     Style:"",
+    canvasId:"",
   },
   didMount() {},
   didUpdate() {},

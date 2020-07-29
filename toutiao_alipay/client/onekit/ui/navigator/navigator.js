@@ -2,6 +2,9 @@ Component({
   mixins: [],
   data: {},
   props: {
+    Class:"",
+    Style:"",
+    Id:"",
     url:"",
     delta:0,
     openType:"navigate",

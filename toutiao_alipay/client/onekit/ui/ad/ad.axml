@@ -1,3 +1,7 @@
-<view style="width:330rpx;height:80rpx;">
+<view
+class="onekit-ad {{Class}}"
+style="width:330rpx;height:80rpx;{{Style}}"
+id="{{Id}}"
+>
   广告
 </view>
