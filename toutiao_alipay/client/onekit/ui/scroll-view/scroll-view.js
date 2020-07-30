@@ -2,6 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
+    Id:'',
     scrollX:false,
     scrollY:false,
     UpperThreshold:50,
@@ -11,12 +12,6 @@ Component({
     ScrollLeft:0,
     ScrollWithAnimation:false,
     EnableBackToTop:false,
-    // enable-flex,
-    // refresher-enabled,
-    // refresher-threshold,
-    // refresher-default-style,
-    // refresher-background
-    //refresher-triggered
   },
   didMount() {},
   didUpdate() {},

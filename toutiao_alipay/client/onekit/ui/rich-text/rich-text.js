@@ -1,7 +1,9 @@
 Component({
   mixins: [],
   data: {},
-  props: {},
+  props: {
+    Id:""
+  },
   didMount() {
     var nodes = this.props.nodes;
     if (typeof (nodes) === "string") {
