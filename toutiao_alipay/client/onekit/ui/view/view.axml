@@ -1,6 +1,6 @@
 <view
-id="{{Id}}"
-class="onkit-view {{Class}}" style="{{Style}}"
+id="{{id}}"
+class="onkit-view {{onekitClass}}" style="{{onekitStyle}}"
 hover-class="{{hoverClass}}"
 hover-stop-propagation="{{hoverStopPropagation}}"
 hover-start-time="{{hoverStartTime}}"

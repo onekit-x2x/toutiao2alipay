@@ -1,6 +1,6 @@
 <image 
-  class="onekit_image {{Class}}" 
-  style="{{Style}}"
+  class="onekit_image {{onekitClass}}" 
+  style="{{onekitStyle}}"
   mode="{{mode}}"
   src="{{src}}"
 

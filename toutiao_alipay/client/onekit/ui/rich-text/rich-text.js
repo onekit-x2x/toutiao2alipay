@@ -2,7 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
-    Id:""
+    id:""
   },
   didMount() {
     var nodes = this.props.nodes;

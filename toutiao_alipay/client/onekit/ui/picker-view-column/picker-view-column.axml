@@ -1,5 +1,5 @@
 <picker-view >
-  <picker-view-column class="onekit-picker-view-column {{Class}}" style="{{Style}}">
+  <picker-view-column class="onekit-picker-view-column {{onekitClass}}" style="{{onekitStyle}}">
   <slot>
   </slot>
   </picker-view-column>

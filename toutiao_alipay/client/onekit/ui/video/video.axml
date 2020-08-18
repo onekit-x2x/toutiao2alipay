@@ -1,6 +1,6 @@
 <video  
 id="video"
-class="{{Class}}"
+class="{{onekitClass}}"
 style="{{style}}"
 src="{{src}}" 
 duration="{{duration}}" 

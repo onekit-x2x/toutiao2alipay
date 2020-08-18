@@ -2,7 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
-    Id:'',
+    id:'',
     hoverClass:'',
     hoverStopPropagation:false,
     hoverStartTime:0,

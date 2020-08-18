@@ -2,7 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
-    Id:"",
+    id:"",
     type:"",
     size:24,
     color:"",},

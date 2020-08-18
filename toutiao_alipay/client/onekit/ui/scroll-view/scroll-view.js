@@ -2,7 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
-    Id:'',
+    id:'',
     scrollX:false,
     scrollY:false,
     UpperThreshold:50,
