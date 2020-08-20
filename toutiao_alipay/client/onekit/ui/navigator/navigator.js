@@ -4,7 +4,7 @@ Component({
   props: {
     onekitClass:"",
     onekitStyle:"",
-    id:"",
+    onekitId:"",
     url:"",
     delta:0,
     openType:"navigate",

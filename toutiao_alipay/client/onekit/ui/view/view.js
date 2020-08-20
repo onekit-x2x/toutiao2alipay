@@ -2,7 +2,9 @@ Component({
   mixins: [],
   data: {},
   props: {
-    id:'',
+    onekitClass:"",
+    onekitStyle:"",
+    onekitId:"",
     hoverClass:'',
     hoverStopPropagation:false,
     hoverStartTime:0,

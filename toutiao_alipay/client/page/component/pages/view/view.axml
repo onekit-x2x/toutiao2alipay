@@ -4,7 +4,7 @@
 <onekit-view  onekit-class="container">
   <template  is="head" data="{{title: 'view'}}"></template>
 
-  <onekit-view  onekit-class="page-body">
+  <onekit-view onekit-id="xxxxxxxxxxxxxx" onekit-class="page-body">
     <onekit-view  onekit-onekit-class="page-section">
       <onekit-view  onekit-class="page-section-title">
         <text >flex-direction: row\n横向布局</text>

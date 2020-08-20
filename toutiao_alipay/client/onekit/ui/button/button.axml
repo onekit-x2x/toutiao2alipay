@@ -1,8 +1,9 @@
 <button
 scope="phoneNumber"
   onTap="button_onTap"
-  class="{{onekitClass}}"
-  style="{{style}}"
+  class="onekit-button {{onekitClass}}"
+  style="{{onekitStyle}}"
+  id="{{onekitId}}"
   size="{{size}}"
   type="{{type}}"
   plain="{{plain}}"

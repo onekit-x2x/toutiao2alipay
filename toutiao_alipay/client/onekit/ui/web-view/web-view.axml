@@ -1,6 +1,6 @@
 <view
 class="onekit-web-view {{onekitClass}}"
 style="{{onekitStyle}}"
-id="{{id}}"
+id="{{onekitId}}"
 >
 </view>

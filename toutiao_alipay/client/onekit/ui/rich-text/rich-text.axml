@@ -1,5 +1,5 @@
 <rich-text
-id="{{id}}"
+id="{{onekitId}}"
 class="onekit-rich-text {{onekitClass}}"
 style="{{style}}"
 nodes="{{nodes}}"/>

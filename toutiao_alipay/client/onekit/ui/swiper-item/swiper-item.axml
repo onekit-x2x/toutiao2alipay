@@ -1,6 +1,6 @@
 <swiper>
  <swiper-item
- item-id="{{id}}"
+ item-id="{{onekitId}}"
 class="onekit-swiper-item {{onekitClass}}"
 style="{{onekitStyle}}"
 >
