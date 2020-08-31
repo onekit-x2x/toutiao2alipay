@@ -4,7 +4,7 @@ Component({
   props: {
     onekitClass:"",
     onekitStyle:"",
-    canvasId:"",
+    onekitId:"",
   },
   didMount() {},
   didUpdate() {},

@@ -1,5 +1,5 @@
 <map
-id="map" 
+id="{{onekitId}}" 
   class="onekit-map {{onekitClass}}"
   style="{{onekitStyle}}"
   longitude="{{longitude}}"

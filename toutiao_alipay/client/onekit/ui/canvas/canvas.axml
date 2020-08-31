@@ -1,7 +1,7 @@
 <canvas
 class="onekit-canvas {{onekitClass}}"
 style="{{onekitStyle}}"
-id="{{canvasId}}"
+id="{{onekitId}}"
 >
 <slot></slot>
 </canvas>
