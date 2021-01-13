@@ -1,0 +1,20 @@
+Component({
+  mixins: [],
+  data: {},
+  props: {
+    onekitClass: '',
+    onekitStyle: '',
+    onekitId: '',
+    url: '',
+    delta: 0,
+    openType: 'navigate',
+    hoverClass: 'navigator-hover',
+    hoverStartTime: '',
+    hoverStayTime: '',
+    hoverStopPropagation: false,
+  },
+  didMount() {},
+  didUpdate() {},
+  didUnmount() {},
+  methods: {},
+})

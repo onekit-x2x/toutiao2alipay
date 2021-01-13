@@ -1,8 +1,0 @@
-{
-  "defaultTitle": "video",
-  "usingComponents": {
-    "onekit-ad": "/onekit/ui/ad/ad",
-    "onekit-button": "/onekit/ui/button/button",
-    "onekit-video": "/onekit/ui/video/video"
-  }
-}

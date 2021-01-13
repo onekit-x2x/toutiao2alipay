@@ -1,9 +1,0 @@
-.wrap {
-    padding: 50rpx 30rpx;
-}
-
-.wrap onekit-video{
-    width: 100%;
-    margin-bottom: 30rpx;
-}
-

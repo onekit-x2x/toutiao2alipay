@@ -1,0 +1,6 @@
+<switch
+class="onekit-switch {{onekitClass}}"
+style="{{onekitStyle}}"
+id="{{onekitId}}"
+checked="{{checked}}"
+/>
