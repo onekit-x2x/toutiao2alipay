@@ -97,16 +97,28 @@ exports.__esModule = true;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/* eslint-disable max-len */
-/* eslint-disable camelcase */
+var tt = function () {
+  function tt() {
+    _classCallCheck(this, tt);
+  }
 
-// import COLOR from 'oneutil'
-// import VideoContext from './api/VideoContext'
-// import CanvasContext from './api/CanvasContext'
+  tt.canIUse = function canIUse(schema) {
+    return my.canIUse(schema);
+  };
 
-var tt = function tt() {
-  _classCallCheck(this, tt);
-};
+  tt.base64ToArrayBuffer = function base64ToArrayBuffer(base64) {
+    base64 = base64.replace(/\s/g, '+');
+    var commonContent = Buffer.from(base64, 'base64');
+    return commonContent;
+  };
+
+  tt.arrayBufferToBase64 = function arrayBufferToBase64(arrayBuffer) {
+    var base64Content = Buffer.from(arrayBuffer).toString('base64');
+    return base64Content;
+  };
+
+  return tt;
+}();
 
 exports.default = tt;
 
