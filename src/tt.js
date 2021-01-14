@@ -719,4 +719,5 @@ export default class tt {
     return my.getConnectedWifi(object)
   }
 
+  // ////// 加速度计  ///////
 }
