@@ -12,5 +12,6 @@ test
 tools
 docs
 miniprogram_dev
+miniprogram_dist
 node_modules
 coverage
