@@ -1,4 +1,5 @@
-App({
+import{OnekitApp,tt} from './toutiao2alipay/index'
+OnekitApp({
     onLaunch: function () {
         console.log('App Launch')
     },
