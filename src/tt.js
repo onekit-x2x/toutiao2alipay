@@ -1159,7 +1159,7 @@ export default class tt {
     return my.pageScrollTo(object)
   }
 
-  // ////// 页面位置  ///////
+  // ////// canvas  ///////
   static createCanvasContext(id) {
     return my.createCanvasContext(id)
   }
