@@ -695,15 +695,15 @@ export default class tt {
   }
 
   static getWifiList(object) {
-    return my.getConnectedWifi(object)
+    return my.getWifiList(object)
   }
 
   static onGetWifiList(object) {
-    return my.getConnectedWifi(object)
+    return my.onGetWifiList(object)
   }
 
   static offGetWifiList(object) {
-    return my.getConnectedWifi(object)
+    return my.offGetWifiList(object)
   }
 
   // ////// 系统信息  ///////
@@ -711,8 +711,8 @@ export default class tt {
     return my.getSystemInfo(object)
   }
 
-  static getSystemInfoSync(object) {
-    return my.getSystemInfoSync(object)
+  static getSystemInfoSync() {
+    return my.getSystemInfoSync()
   }
 
   static getConnectedWifi(object) {
@@ -884,5 +884,199 @@ export default class tt {
 
   static offUserCaptureScreen(callback) {
     return my.offUserCaptureScreen(callback)
+  }
+
+  static getScreenBrightness(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.getScreenBrightness({
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'getScreenBrightness: ok',
+            value: my_res.brightness
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static setScreenBrightness(tt_object) {
+    const tt_value = tt_object.value
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const brightness = tt_value
+    PROMISE((SUCCESS) => {
+      my.setScreenBrightness({
+        brightness,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setScreenBrightness: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 震动  ///////
+  static vibrateShort(object) {
+    return my.vibrateShort(object)
+  }
+
+  static vibrateLong(object) {
+    return my.vibrateLong(object)
+  }
+
+  // ////// 性能  ///////
+  static onMemoryWarning(callback) {
+    return my.onMemoryWarning(callback)
+  }
+
+  // ////// 界面  ///////
+  static showToast(tt_object) {
+    const tt_title = tt_object.title
+    const tt_icon = tt_object.icon || 'success'
+    const tt_duration = tt_object.duration || 1500
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const content = tt_title
+    const type = tt_icon
+    const duration = tt_duration
+    PROMISE((SUCCESS) => {
+      my.showToast({
+        content,
+        type,
+        duration,
+        success: () => {
+          const tt_res = {
+            errMsg: 'showToast: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static hideToast(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.hideToast({
+        success: () => {
+          const tt_res = {
+            errMsg: 'hideToast: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static showLoading(tt_object) {
+    const tt_title = tt_object.title
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const content = tt_title
+    PROMISE((SUCCESS) => {
+      my.showLoading({
+        content,
+        success: () => {
+          const tt_res = {
+            errMsg: 'showLoading: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static hideLoading(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.hideLoading({
+        success: () => {
+          const tt_res = {
+            errMsg: 'hideLoading: ok',
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static showModal(tt_object) {
+    const tt_title = tt_object.title
+    const tt_content = tt_object.content
+    const tt_confirmText = tt_object.confirmText || '确定'
+    const tt_cancelText = tt_object.cancelText || '取消'
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const title = tt_title
+    const content = tt_content
+    const confirmButtonText = tt_confirmText
+    const cancelButtonText = tt_cancelText
+    PROMISE((SUCCESS) => {
+      my.confirm({
+        title,
+        content,
+        confirmButtonText,
+        cancelButtonText,
+        success: my_res => {
+          if (my_res.confirm) {
+            const tt_res = {
+              errMsg: 'showModal: ok',
+              confirm: true,
+              cancel: false
+            }
+            SUCCESS(tt_res)
+          } else {
+            const tt_res = {
+              errMsg: 'showModal: ok',
+              confirm: false,
+              cancel: true
+            }
+            SUCCESS(tt_res)
+          }
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static showActionSheet(tt_object) {
+    const tt_itemList = tt_object.itemList
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const items = tt_itemList
+    PROMISE((SUCCESS) => {
+      my.showActionSheet({
+        items,
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'hideLoading: ok',
+            tapIndex: my_res.index
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
   }
 }
