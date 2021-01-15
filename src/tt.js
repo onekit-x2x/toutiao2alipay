@@ -22,7 +22,7 @@ export default class tt {
   }
 
   static canIPutStuffOverComponent() {
-    return console.warn('canIPutStuffOverComponent is not support')
+    return true
   }
 
   static getUpdateManager() {
@@ -1304,7 +1304,7 @@ export default class tt {
 
   // ////// 转发  ///////
   static showShareMenu() {
-    return console.warn('showShareMenu is not support')
+
   }
 
   static hideShareMenu(object) {
