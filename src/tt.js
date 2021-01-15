@@ -1079,4 +1079,285 @@ export default class tt {
       })
     }, tt_success, tt_fail, tt_complete)
   }
+
+  static showFavoriteGuide() {
+    return console.warn('showFavoriteGuide is not support')
+  }
+
+  static showInteractionBar() {
+    return console.warn('showInteractionBar is not support')
+  }
+
+  static hideInteractionBar() {
+    return console.warn('hideInteractionBar is not support')
+  }
+
+  // ////// 导航栏  ///////
+  static showNavigationBarLoading(object) {
+    return my.showNavigationBarLoading(object)
+  }
+
+  static hideNavigationBarLoading(object) {
+    return my.hideNavigationBarLoading(object)
+  }
+
+  static hideHomeButton(object) {
+    return my.hideBackHome(object)
+  }
+
+  static setNavigationBarTitle(tt_object) {
+    const tt_title = tt_object.title
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const title = tt_title
+    PROMISE((SUCCESS) => {
+      my.setNavigationBar({
+        title,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setNavigationBarTitle: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static setNavigationBarColor(tt_object) {
+    const tt_backgroundColor = tt_object.backgroundColor
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const backgroundColor = tt_backgroundColor
+    PROMISE((SUCCESS) => {
+      my.setNavigationBar({
+        backgroundColor,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setNavigationBarColor: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static getMenuButtonBoundingClientRect() {
+    return my.getMenuButtonBoundingClientRect()
+  }
+
+  // ////// 动画  ///////
+  static createAnimation(object) {
+    return my.createAnimation(object)
+  }
+
+  // ////// 页面位置  ///////
+  static pageScrollTo(object) {
+    return my.pageScrollTo(object)
+  }
+
+  // ////// 页面位置  ///////
+  static createCanvasContext(id) {
+    return my.createCanvasContext(id)
+  }
+
+  static createOffscreenCanvas() {
+    return console.warn('createOffscreenCanvas is not support')
+  }
+
+  static canvasToTempFilePath(tt_object) {
+    const tt_canvasId = tt_object.canvasId
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const canvasId = tt_canvasId
+    PROMISE((SUCCESS) => {
+      my.canvasToTempFilePath({
+        canvasId,
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'canvasToTempFilePath: ok',
+            tempFilePath: my_res.apFilePath
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 下拉刷新  ///////
+  static startPullDownRefresh(object) {
+    return my.startPullDownRefresh(object)
+  }
+
+  static stopPullDownRefresh(object) {
+    return my.stopPullDownRefresh(object)
+  }
+
+  // ////// TabBar  ///////
+  static showTabBarRedDot(object) {
+    return my.showTabBarRedDot(object)
+  }
+
+  static showTabBar(object) {
+    return my.showTabBar(object)
+  }
+
+  static setTabBarStyle(tt_object) {
+    const tt_color = tt_object.color || '#ff3377'
+    const tt_selectedColor = tt_object.selectedColor || '#ff3377'
+    const tt_backgroundColor = tt_object.backgroundColor || '#ffffff'
+    const tt_borderStyle = tt_object.borderStyle || 'black'
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const color = tt_color
+    const selectedColor = tt_selectedColor
+    const backgroundColor = tt_backgroundColor
+    const borderStyle = tt_borderStyle
+    PROMISE((SUCCESS) => {
+      my.setTabBarStyle({
+        color,
+        selectedColor,
+        backgroundColor,
+        borderStyle,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setTabBarStyle: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static setTabBarItem(tt_object) {
+    const tt_index = tt_object.index
+    const tt_text = tt_object.text || ''
+    const tt_iconPath = tt_object.iconPath || ''
+    const tt_selectedIconPath = tt_object.selectedIconPath || ''
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const index = tt_index
+    const text = tt_text
+    const iconPath = tt_iconPath
+    const selectedIconPath = tt_selectedIconPath
+    PROMISE((SUCCESS) => {
+      my.setTabBarItem({
+        index,
+        text,
+        iconPath,
+        selectedIconPath,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setTabBarItem: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static setTabBarBadge(object) {
+    return my.setTabBarBadge(object)
+  }
+
+  static removeTabBarBadge(object) {
+    return my.removeTabBarBadge(object)
+  }
+
+  static hideTabBarRedDot(object) {
+    return my.hideTabBarRedDot(object)
+  }
+
+  static hideTabBar(object) {
+    return my.hideTabBar(object)
+  }
+
+  // ////// 导航  ///////
+  static navigateTo(object) {
+    return my.navigateTo(object)
+  }
+
+  static redirectTo(object) {
+    return my.redirectTo(object)
+  }
+
+  static switchTab(object) {
+    return my.switchTab(object)
+  }
+
+  static navigateBack(object) {
+    return my.navigateBack(object)
+  }
+
+  static reLaunch(object) {
+    return my.reLaunch(object)
+  }
+
+  // ////// 转发  ///////
+  static showShareMenu() {
+    return console.warn('showShareMenu is not support')
+  }
+
+  static hideShareMenu(object) {
+    return my.hideShareMenu(object)
+  }
+
+  static navigateToVideoView() {
+    return console.warn('navigateToVideoView is not support')
+  }
+
+  // ////// 第三方平台  ///////
+  static getExtConfig(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.getExtConfig({
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'getExtConfig: ok',
+            extConfig: my_res.data
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static getExtConfigSync(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.getExtConfigSync({
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'getExtConfig: ok',
+            extConfig: my_res.data
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// TTML  ///////
+  static createSelectorQuery() {
+    return my.createSelectorQuery()
+  }
+
+  static createIntersectionObserver(object) {
+    return my.createIntersectionObserver(object)
+  }
 }
