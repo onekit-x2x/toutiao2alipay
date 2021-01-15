@@ -720,4 +720,169 @@ export default class tt {
   }
 
   // ////// 加速度计  ///////
+  static onAccelerometerChange(callback) {
+    my.onAccelerometerChange(function (res) {
+      if (tt._stopAccelerometer) {
+        return
+      }
+      callback(res)
+    })
+  }
+
+  static offAccelerometerChange(callback) {
+    my.offAccelerometerChange(function (res) {
+      if (tt._stopAccelerometer) {
+        return
+      }
+      callback(res)
+    })
+  }
+
+  static stopAccelerometer(tt_object) {
+    tt._stopAccelerometer = true
+    if (tt_object.success) {
+      tt_object.success()
+    }
+    if (tt_object.complete) {
+      tt_object.complete()
+    }
+  }
+
+  static startAccelerometer(tt_object) {
+    tt._stopAccelerometer = false
+    if (tt_object.success) {
+      tt_object.success()
+    }
+    if (tt_object.complete) {
+      tt_object.complete()
+    }
+  }
+
+  // ////// 罗盘  ///////
+  static onCompassChange(callback) {
+    my.onCompassChange(function (res) {
+      if (tt._stopCompass) {
+        return
+      }
+      callback(res)
+    })
+  }
+
+  static stopCompass(tt_object) {
+    tt._stopCompass = true
+    if (tt_object.success) {
+      tt_object.success()
+    }
+    if (tt_object.complete) {
+      tt_object.complete()
+    }
+  }
+
+  static startCompass(tt_object) {
+    tt._stopCompass = false
+    if (tt_object.success) {
+      tt_object.success()
+    }
+    if (tt_object.complete) {
+      tt_object.complete()
+    }
+  }
+
+  // ////// 拨打电话  ///////
+  static makePhoneCall(tt_object) {
+    const tt_phoneNumber = tt_object.phoneNumber
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const number = tt_phoneNumber
+    PROMISE((SUCCESS) => {
+      my.makePhoneCall({
+        number,
+        success: () => {
+          const tt_res = {
+            errMsg: 'makePhoneCall: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 扫码  ///////
+  static scanCode(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.scan({
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'scanCode: ok',
+            result: my_res.code,
+            qrCode: my_res.qrCode,
+            barCode: my_res.barCode,
+            codeType: my_res.codeType,
+            codeContent: my_res.codeContent,
+            imageChannel: my_res.imageChannel,
+            rawData: my_res.rawData,
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 剪切板  ///////
+  static getClipboardData(tt_object) {
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    PROMISE((SUCCESS) => {
+      my.getClipboard({
+        success: my_res => {
+          const tt_res = {
+            errMsg: 'getClipboardData: ok',
+            data: my_res.text
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  static setClipboardData(tt_object) {
+    const tt_data = tt_object.data
+    const tt_success = tt_object.success
+    const tt_fail = tt_object.fail
+    const tt_complete = tt_object.complete
+    tt_object = null
+    const text = tt_data
+    PROMISE((SUCCESS) => {
+      my.setClipboard({
+        text,
+        success: () => {
+          const tt_res = {
+            errMsg: 'setClipboardData: ok'
+          }
+          SUCCESS(tt_res)
+        }
+      })
+    }, tt_success, tt_fail, tt_complete)
+  }
+
+  // ////// 屏幕  ///////
+  static setKeepScreenOn(object) {
+    return my.setKeepScreenOn(object)
+  }
+
+  static onUserCaptureScreen(callback) {
+    return my.onUserCaptureScreen(callback)
+  }
+
+  static offUserCaptureScreen(callback) {
+    return my.offUserCaptureScreen(callback)
+  }
 }
