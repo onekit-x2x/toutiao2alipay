@@ -1,3 +1,22 @@
-<view>
-  New Component
-</view>
+<slider
+  class="onekit-slider {{onekitClass}}"
+  style="{{onekitStyle}}"
+  id="{{onekitId}}"
+  
+  name="{{name}}"
+  min="{{min}}"
+  max="{{max}}"
+  step="{{step}}"
+  disabled="{{disabled}}"
+  value="{{value}}"
+  show-value="{{showValue}}"
+  active-color="{{selectedColor || activeColor}}"
+  background-color="{{color || backgroundColor}}"
+  handle-size="{{blockSize}}"
+  handle-color="{{blockColor}}"
+  
+  onChange="slider_Change"
+  onChanging="slider_Changing"
+>
+<slot></slot>
+</slider>

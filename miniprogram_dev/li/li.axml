@@ -23,7 +23,7 @@
 </onekit-view> -->
 
 <!-- <progress> -->
-<onekit-view onekit-class="container">
+<!-- <onekit-view onekit-class="container">
   <onekit-view onekit-class="body body-space">
     <onekit-view onekit-class="page-section page-section-space">
       <onekit-view onekit-class="progress-box">
@@ -37,6 +37,30 @@
       </onekit-view>
       <onekit-view onekit-class="progress-box">
         <onekit-progress percent="80" color="#10AEFF" active stroke-width="3"></onekit-progress>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- slider -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space">
+    <onekit-view onekit-class="page-section page-section-gap">
+      <onekit-view onekit-class="page-section-title">设置step</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-slider value="60" onChange="slider2change" step="5" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff" show-value="{{false}}" onChanging="bindchanging"></onekit-slider>
+      </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="page-section page-section-gap">
+      <onekit-view onekit-class="page-section-title">显示当前value</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-slider value="50" onChange="slider3change" show-value step="1" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff"></onekit-slider>
+      </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="page-section page-section-gap">
+      <onekit-view onekit-class="page-section-title">设置最小/最大值</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-slider value="100" onChange="slider4change" min="50" max="200" show-value step="1" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff"></onekit-slider>
       </onekit-view>
     </onekit-view>
   </onekit-view>
