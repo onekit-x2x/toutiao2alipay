@@ -261,9 +261,9 @@ Component({
   didUnmount: function didUnmount() {},
 
   methods: {
-    view_tap: function view_tap() {
-      this.props.onTap({});
-    }
+    // view_tap() {
+    //   this.props.onTap({})
+    // }
   }
 });
 

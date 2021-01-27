@@ -251,13 +251,41 @@ Component({
   mixins: [_onekit_behavior2.default, _toutiao_behavior2.default],
   data: {},
   props: {
-    checked: false
+    name: '',
+    checked: false,
+    disabled: false,
+    type: 'switch',
+    color: '#F85959',
+    value: ''
   },
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
+  methods: {
+    switch_Change: function switch_Change(_ref) {
+      var detail = _ref.detail;
 
-  methods: {}
+      var dataset = this._dataset();
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    },
+    checkbox_Change: function checkbox_Change(_ref2) {
+      var detail = _ref2.detail;
+
+      var dataset = this._dataset();
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    }
+  }
 });
 
 /***/ })

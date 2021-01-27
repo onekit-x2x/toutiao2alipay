@@ -7,10 +7,35 @@ Component({
   mixins: [onekit_behavior, toutiao_behavior],
   data: {},
   props: {
+    name: '',
     checked: false,
+    disabled: false,
+    type: 'switch',
+    color: '#F85959',
+    value: ''
   },
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
-  methods: {},
+  methods: {
+    switch_Change({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
+    },
+    checkbox_Change({detail}) {
+      const dataset = this._dataset()
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail,
+          currentTarget: {
+            dataset
+          }
+        })
+      }
+    }
+  },
 })

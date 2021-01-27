@@ -2,6 +2,7 @@
   "usingComponents": {
     "onekit-view": "../toutiao2alipay/ui/view/view",
     "onekit-progress": "../toutiao2alipay/ui/progress/progress",
-    "onekit-slider": "../toutiao2alipay/ui/slider/slider"
+    "onekit-slider": "../toutiao2alipay/ui/slider/slider",
+    "onekit-switch": "../toutiao2alipay/ui/switch/switch"
   }
 }

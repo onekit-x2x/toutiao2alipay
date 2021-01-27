@@ -43,7 +43,7 @@
 </onekit-view> -->
 
 <!-- slider -->
-<onekit-view onekit-class="container">
+<!-- <onekit-view onekit-class="container">
   <onekit-view onekit-class="body body-space">
     <onekit-view onekit-class="page-section page-section-gap">
       <onekit-view onekit-class="page-section-title">设置step</onekit-view>
@@ -61,6 +61,36 @@
       <onekit-view onekit-class="page-section-title">设置最小/最大值</onekit-view>
       <onekit-view onekit-class="body-view">
         <onekit-slider value="100" onChange="slider4change" min="50" max="200" show-value step="1" disabled="{{false}}" background-color="#e9e9e9" active-color="#1aad19" block-size="28" block-color="#fff"></onekit-slider>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- switch -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="body">
+    <onekit-view onekit-class="page-section page-section-space">
+      <onekit-view onekit-class="page-section-title">默认样式</onekit-view>
+      <onekit-view onekit-class="body-view">
+        <onekit-switch checked onChange="switch1Change" type="switch" onekit-class="switch-space" color="#F85959" disabled="{{false}}"></onekit-switch>
+        <onekit-switch onChange="switch2Change"></onekit-switch>
+      </onekit-view>
+    </onekit-view>
+    <onekit-view onekit-class="page-section">
+      <onekit-view onekit-class="page-section-title page-section-title-space">推荐展示样式</onekit-view>
+      <onekit-view onekit-class="ttui-cells">
+        <onekit-view onekit-class="ttui-cell ttui-cell-switch">
+          <onekit-view onekit-class="ttui-cell__bd">开启中</onekit-view>
+          <onekit-view onekit-class="ttui-cell__ft">
+            <onekit-switch checked type="switch" onekit-class="switch-space" color="#F85959" disabled="{{false}}"></onekit-switch>
+          </onekit-view>
+        </onekit-view>
+        <onekit-view onekit-class="ttui-cell ttui-cell-switch">
+          <onekit-view onekit-class="ttui-cell__bd">关闭</onekit-view>
+          <onekit-view onekit-class="ttui-cell__ft">
+            <onekit-switch type="switch" onekit-class="switch-space" color="#F85959" disabled="{{false}}"></onekit-switch>
+          </onekit-view>
+        </onekit-view>
       </onekit-view>
     </onekit-view>
   </onekit-view>

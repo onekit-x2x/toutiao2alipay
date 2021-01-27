@@ -5,7 +5,7 @@ hover-class="{{hoverClass}}"
 hover-stop-propagation="{{hoverStopPropagation}}"
 hover-start-time="{{hoverStartTime}}"
 hover-stay-time="{{hoverStayTime}}"
-onTap="view_tap"
+onTap="ui_tap"
 >
 <slot>
 
