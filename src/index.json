@@ -1,9 +1,17 @@
 {
   "usingComponents": {
+    "_/bottom_view":"./ui/_/bottom-view/bottom-view",
+    "_/date-picker":"./ui/_/date-picker/date-picker",
+    "_/mask-view":"./ui/_/mask-view/mask-view",
+    "_/multiselector-picker":"./ui/_/multiselector-picker/multiselector-picker",
+    "_/ragion-picker":"./ui/_/ragion-picker/ragion-picker",
+    "_/selector-picker":"./ui/_/selector-picker/selector-picker",
+    "_/time-picker":"./ui/_/time-picker/time-picker",
     "ad": "./ui/ad/ad",
     "canvas":"./ui/canvas/canvas",
     "live-player":"./ui/live-player/live-player",
     "navigator":"./ui/navigator/navigator",
+    "picker":"./ui/picker/picker",
     "progress":"./ui/progress/progress",
     "slider":"./ui/slider/slider",
     "switch":"./ui/switch/switch",

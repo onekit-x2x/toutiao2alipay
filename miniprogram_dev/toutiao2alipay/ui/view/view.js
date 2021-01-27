@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -229,7 +229,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 12:
+/***/ 23:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -255,15 +255,6 @@ Component({
     hoverStopPropagation: false,
     hoverStartTime: 0,
     hoverStayTime: 0
-  },
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
-  methods: {
-    // view_tap() {
-    //   this.props.onTap({})
-    // }
   }
 });
 

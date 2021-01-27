@@ -82,13 +82,19 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */,
 /* 1 */,
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("oneutil");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -96,7 +102,7 @@ module.exports =
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(17);
+var _PROMISE = __webpack_require__(28);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
@@ -1547,12 +1553,6 @@ var tt = function () {
 exports.default = tt;
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("oneutil");
-
-/***/ }),
 /* 4 */,
 /* 5 */,
 /* 6 */,
@@ -1563,7 +1563,18 @@ module.exports = require("oneutil");
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1571,21 +1582,21 @@ module.exports = require("oneutil");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GLOBAL = exports.tt = exports.OnekitPage = exports.OnekitComponent = exports.OnekitBehavior = exports.OnekitApp = void 0;
-var OnekitApp_1 = __webpack_require__(15);
+var OnekitApp_1 = __webpack_require__(26);
 exports.OnekitApp = OnekitApp_1.default;
-var OnekitBehavior_1 = __webpack_require__(16);
+var OnekitBehavior_1 = __webpack_require__(27);
 exports.OnekitBehavior = OnekitBehavior_1.default;
-var OnekitComponent_1 = __webpack_require__(18);
+var OnekitComponent_1 = __webpack_require__(29);
 exports.OnekitComponent = OnekitComponent_1.default;
-var OnekitPage_1 = __webpack_require__(19);
+var OnekitPage_1 = __webpack_require__(30);
 exports.OnekitPage = OnekitPage_1.default;
-var tt_1 = __webpack_require__(2);
+var tt_1 = __webpack_require__(3);
 exports.tt = tt_1.default;
-var global_1 = __webpack_require__(20);
+var global_1 = __webpack_require__(31);
 exports.GLOBAL = global_1.default;
 
 /***/ }),
-/* 15 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1682,7 +1693,7 @@ function OnekitApp(tt_object) {
 }
 
 /***/ }),
-/* 16 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1691,11 +1702,11 @@ function OnekitApp(tt_object) {
 exports.__esModule = true;
 exports.default = OnekitBehavior;
 
-var _oneutil = __webpack_require__(3);
+var _oneutil = __webpack_require__(2);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
-var _tt = __webpack_require__(2);
+var _tt = __webpack_require__(3);
 
 var _tt2 = _interopRequireDefault(_tt);
 
@@ -1808,7 +1819,7 @@ function OnekitBehavior(object) {
 }
 
 /***/ }),
-/* 17 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1847,7 +1858,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 18 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1856,11 +1867,11 @@ __webpack_require__.r(__webpack_exports__);
 exports.__esModule = true;
 exports.default = OnekitComponent;
 
-var _oneutil = __webpack_require__(3);
+var _oneutil = __webpack_require__(2);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
-var _tt = __webpack_require__(2);
+var _tt = __webpack_require__(3);
 
 var _tt2 = _interopRequireDefault(_tt);
 
@@ -2043,7 +2054,7 @@ function OnekitComponent(object) {
 }
 
 /***/ }),
-/* 19 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2234,7 +2245,7 @@ function OnekitPage(swan_object) {
 }
 
 /***/ }),
-/* 20 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
