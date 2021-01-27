@@ -158,7 +158,7 @@
       </onekit-view>
       <onekit-view onekit-class="page-section">
         <onekit-view onekit-class="page-section-title page-section-title-space">省市区选择器</onekit-view>
-        <onekit-picker mode="region" onChange="bindRegionChange" value="{{region}}" custom-item>
+        <onekit-picker mode="region" onChange="bindRegionChange"  custom-item=""> 
           <onekit-view onekit-class="picker">
             当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
           </onekit-view>

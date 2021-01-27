@@ -257,9 +257,12 @@ Component({
     range: [],
     value: null,
     start: '',
-    end: ''
+    end: '',
+    customItem: ''
   },
-  didMount: function didMount() {},
+  didMount: function didMount() {
+    console.log('customItem', this.props.customItem);
+  },
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 

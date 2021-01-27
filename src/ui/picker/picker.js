@@ -14,8 +14,11 @@ Component({
     value: null,
     start: '',
     end: '',
+    customItem: ''
   },
-  didMount() {},
+  didMount() {
+    console.log('customItem', this.props.customItem)
+  },
   didUpdate() {},
   didUnmount() {},
   methods: {

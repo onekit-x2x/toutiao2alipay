@@ -119,9 +119,9 @@ Component({
     onekitStyle: '',
     onekitClass: '',
     onekitId: '',
-    headerText: null,
+    headerText: '',
     disabled: false,
-    value: ['北京市', '北京市', '东城区'],
+    value: [_provices2.default[0].name, _citys2.default[_provices2.default[0].id].name, _towns2.default[_citys2.default[_provices2.default[0].id].id].name],
     customItem: ''
   },
   data: {
@@ -139,13 +139,15 @@ Component({
 
   methods: {
     init: function init(value) {
+      console.log('xxxxxx', new Date().getTime());
       if (!value) {
-        this.provinceChange(this.props.customItem ? -1 : 0);
-        this.cityChange(this.props.customItem ? -1 : 0);
-        this.townChange(this.props.customItem ? -1 : 0);
+        console.error('居然进来了！！！！！');
+        this.provinceChange(this.props.customItem !== '' ? -1 : 0);
+        this.cityChange(this.props.customItem !== '' ? -1 : 0);
+        this.townChange(this.props.customItem !== '' ? -1 : 0);
         return;
       }
-      if (this.props.customItem && value[0] === this.props.customItem) {
+      if (this.props.customItem !== '' && value[0] === this.props.customItem) {
         this.setData({
           provinceIndexes: 0
         });
@@ -162,7 +164,7 @@ Component({
           }
         }
       }
-      if (this.props.customItem && value[1] === this.props.customItem) {
+      if (this.props.customItem !== '' && value[1] === this.props.customItem) {
         this.setData({
           cityIndexes: 0
         });
@@ -170,7 +172,7 @@ Component({
       } else {
         for (var c = 0; c < this.data.citys.length; c++) {
           if (this.data.citys[c].name === value[1]) {
-            var _i = [this.props.customItem ? c + 1 : c];
+            var _i = [this.props.customItem !== '' ? c + 1 : c];
             this.setData({
               cityIndexes: _i
             });
@@ -179,7 +181,7 @@ Component({
           }
         }
       }
-      if (this.props.customItem && value[2] === this.props.customItem) {
+      if (this.props.customItem !== '' && value[2] === this.props.customItem) {
         this.setData({
           townIndexes: 0
         });
@@ -187,7 +189,7 @@ Component({
       } else {
         for (var t = 0; t < this.data.towns.length; t++) {
           if (this.data.towns[t].name === value[2]) {
-            var _i2 = [this.props.customItem ? t + 1 : t];
+            var _i2 = [this.props.customItem !== '' ? t + 1 : t];
             this.setData({
               townIndexes: _i2
             });
@@ -213,7 +215,7 @@ Component({
       this.data.ragion.value[0] = province.name;
       this.data.ragion.code[0] = province.id;
       //
-      var i = this.props.customItem ? 0 : 1;
+      var i = this.props.customItem !== '' ? 0 : 1;
       this.setData({
         citys: citys,
         cityIndexes: [i]
@@ -308,20 +310,20 @@ Component({
     province_change: function province_change(e) {
       var index = e.detail.value[0];
       this.data.provinceIndexes = [index];
-      this.provinceChange(this.props.customItem && index === 0 ? -1 : this.props.customItem ? index - 1 : index);
-      this.cityChange(this.props.customItem ? -1 : 0);
-      this.townChange(this.props.customItem ? -1 : 0);
+      this.provinceChange(this.props.customItem !== '' && index === 0 ? -1 : this.props.customItem ? index - 1 : index);
+      this.cityChange(this.props.customItem !== '' ? -1 : 0);
+      this.townChange(this.props.customItem !== '' ? -1 : 0);
     },
     city_change: function city_change(e) {
       var index = e.detail.value[0];
       this.data.cityIndexes = [index];
-      this.cityChange(this.props.customItem && index === 0 ? -1 : this.props.customItem ? index - 1 : index);
-      this.townChange(this.props.customItem ? -1 : 0);
+      this.cityChange(this.props.customItem !== '' && index === 0 ? -1 : this.props.customItem ? index - 1 : index);
+      this.townChange(this.props.customItem !== '' ? -1 : 0);
     },
     town_change: function town_change(e) {
       var index = e.detail.value[0];
       this.data.townIndexes = [index];
-      this.townChange(this.props.customItem && index === 0 ? -1 : this.props.customItem ? index - 1 : index);
+      this.townChange(this.props.customItem !== '' && index === 0 ? -1 : this.props.customItem ? index - 1 : index);
     }
   }
 }); /* eslint-disable no-console */
