@@ -16,9 +16,7 @@ Component({
     end: '',
     customItem: ''
   },
-  didMount() {
-    console.log('customItem', this.props.customItem)
-  },
+  didMount() {},
   didUpdate() {},
   didUnmount() {},
   methods: {

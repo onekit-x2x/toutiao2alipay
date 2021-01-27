@@ -260,9 +260,7 @@ Component({
     end: '',
     customItem: ''
   },
-  didMount: function didMount() {
-    console.log('customItem', this.props.customItem);
-  },
+  didMount: function didMount() {},
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 

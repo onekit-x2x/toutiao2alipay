@@ -130,16 +130,19 @@ Component({
   },
   methods: {
     _initColumn: function _initColumn(data, name) {
-      var rows = this.data.customItem ? [{
+      var rows = this.props.customItem ? [{
         id: '',
-        name: this.data.customItem
+        name: this.props.customItem,
+        zipcode: ''
       }].concat(data) : data;
       var index = 0;
-      rows.forEach(function (row, i) {
-        if (row.name === name) {
-          index = i;
-        }
-      });
+      if (name) {
+        rows.forEach(function (row, i) {
+          if (row.name === name) {
+            index = i;
+          }
+        });
+      }
       return {
         rows: rows,
         index: index
@@ -149,21 +152,20 @@ Component({
       if (this.props.disabled) {
         return;
       }
-      if (!this.data.value) {
-        this.data.value = VALUE;
-      }
-      var provinces_index = this._initColumn(_provices2.default, this.data.value[0]);
-      var citys_index = this._initColumn(_citys2.default['id' + provinces_index.rows[provinces_index.index].id], this.data.value[1]);
-      var towns_index = this._initColumn(_towns2.default['id' + citys_index.rows[citys_index.index].id], this.data.value[2]);
+      var value = this.props.value;
+      var provinces_index = this._initColumn(_provices2.default, value[0]);
+      var citys_index = this._initColumn(_citys2.default['id' + provinces_index.rows[provinces_index.index].id], value[1]);
+      var towns_index = this._initColumn(_towns2.default['id' + citys_index.rows[citys_index.index].id], value[2]);
       //
+      console.log(provinces_index, citys_index, towns_index);
       this.setData({
         show: true,
         provinces: provinces_index.rows,
-        provinceIndex: provinces_index.index,
+        provinceIndexes: [provinces_index.index],
         citys: citys_index.rows,
-        cityIndex: citys_index.index,
+        cityIndexes: [citys_index.index],
         towns: towns_index.rows,
-        townIndex: towns_index.index
+        townIndexes: [towns_index.index]
       });
     },
     ragion_cancle: function ragion_cancle() {
@@ -178,18 +180,63 @@ Component({
       this.setData({
         show: false
       });
-      if (this.data.onChange) {
-        this.data.onChange({});
+      var selectedProvince = this.data.provinces[this.data.selectedProvinceIndex];
+      var selectedCity = this.data.citys[this.data.selectedCityIndex];
+      var selectedTown = this.data.towns[this.data.selectedTownIndex];
+      //
+      var value = [selectedProvince.name, selectedCity.name, selectedTown.name];
+      var code = [];
+      if (selectedProvince.id) {
+        code.push(selectedProvince.id);
+      }
+      if (selectedCity.id) {
+        code.push(selectedCity.id);
+      }
+      if (selectedTown.id) {
+        code.push(selectedTown.id);
+      }
+      //
+      var detail = {
+        value: value,
+        code: code
+      };
+      if (selectedTown.zipcode) {
+        detail.postcode = selectedTown.zipcode;
+      }
+      if (this.props.onChange) {
+        this.props.onChange({
+          detail: detail
+        });
       }
     },
-    province_change: function province_change() {
-      //  const province = this.data.provinces[e.detail.value[0]]
+    province_change: function province_change(e) {
+      var selectedProvinceIndex = this.data.selectedProvinceIndex = e.detail.value[0];
+      //
+      var province = this.data.provinces[selectedProvinceIndex];
+      var citys_index = this._initColumn(_citys2.default['id' + province.id]);
+      //
+      var towns_index = this._initColumn(_towns2.default['id' + citys_index.rows[0].id]);
+      //
+      this.setData({
+        citys: citys_index.rows,
+        cityIndexes: [citys_index.index],
+        towns: towns_index.rows,
+        townIndexes: [towns_index.index]
+      });
     },
-    city_change: function city_change() {
-      //  const index = e.detail.value[0]
+    city_change: function city_change(e) {
+      var selectedCityIndex = this.data.selectedCityIndex = e.detail.value[0];
+      //
+      var city = this.data.citys[selectedCityIndex];
+      var towns_index = this._initColumn(_towns2.default['id' + city.id]);
+      //
+      this.setData({
+        towns: towns_index.rows,
+        townIndexes: [towns_index.index]
+      });
     },
-    town_change: function town_change() {
-      //   const index = e.detail.value[0]
+    town_change: function town_change(e) {
+      this.data.selectedTownIndex = e.detail.value[0];
     }
   }
 });
