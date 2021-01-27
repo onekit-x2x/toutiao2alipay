@@ -1,0 +1,40 @@
+/* view */
+/* .flex-wrapper {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-item {
+  width: 200rpx;
+  height: 300rpx;
+  text-align: center;
+  line-height: 300rpx;
+  color: #fff;
+}
+
+.flex-item.hover-item {
+  opacity: 0.6;
+}
+
+.flex-item-v {
+  align-self: center;
+  width: 300rpx;
+  height: 160rpx;
+  text-align: center;
+  line-height: 160rpx;
+  color: #fff;
+} */
+
+/* progress */
+.onekit-progress{
+  width: 100%;
+}
+.progress-box{
+  display: flex;
+  height: 50rpx;
+  margin-bottom: 60rpx;
+}
+.progress-cancel{
+  margin-left: 40rpx;
+}

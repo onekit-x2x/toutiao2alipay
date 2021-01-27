@@ -1,18 +1,42 @@
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+import onekit_behavior from '../../behavior/onekit_behavior'
+import toutiao_behavior from '../../behavior/toutiao_behavior'
+
 Component({
-  mixins: [],
+  mixins: [onekit_behavior, toutiao_behavior],
   data: {},
   props: {
-    onekitClass: '',
-    onekitStyle: '',
-    onekitId: '',
     percent: '',
-    showInfo: false,
     strokeWidth: 6,
-    activeColor: '#09BB07',
+    // color: '',
+    activeColor: '',
     backgroundColor: '#EBEBEB',
-    active: false
+    active: false,
+    activeMode: '',
   },
-  didMount() {},
+  didMount() {
+    let activeColor
+    let activeMode
+    /* if (this.props.color) {
+      activeColor = this.props.color
+    } else */
+    if (this.props.activeColor) {
+      activeColor = this.props.activeColor
+    } else {
+      activeColor = '#F85959'
+    }
+    //
+    if (this.props.activeMode) {
+      activeMode = this.props.activeMode
+    } else {
+      activeMode = 'backwards'
+    }
+    this.setData({
+      activeColor,
+      activeMode,
+    })
+  },
   didUpdate() {},
   didUnmount() {},
   methods: {},

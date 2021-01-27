@@ -82,32 +82,205 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 13:
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Component({
-  mixins: [],
-  data: {},
+exports.__esModule = true;
+/* eslint-disable no-console */
+exports.default = {
   props: {
+    onekitId:  false || 'id_' + Math.random() * 1000,
     onekitClass: '',
     onekitStyle: '',
-    onekitId: '',
-    percent: '',
-    showInfo: false,
-    strokeWidth: 6,
-    activeColor: '#09BB07',
-    backgroundColor: '#EBEBEB',
-    active: false
+    onekitVersion: '',
+    onekitDataset: null
   },
-  didMount: function didMount() {},
+  data: {},
+  onInit: function onInit() {
+    if (this.props.onekitId) {
+      getApp().onekit_nodes['_' + this.props.onekitId] = this;
+    }
+    //
+    if (this.props.onekitClass) {
+      getApp().onekit_nodes['__' + this.props.onekitClass] = this;
+    }
+  },
+
+  methods: {
+    _dataset: function _dataset() {
+      if (!this.props.onekitDataset) {
+        return {};
+      }
+      var json = '{' + this.props.onekitDataset + '}';
+      return JSON.parse(json);
+    },
+    _e: function _e(detail, dataset) {
+      // currentTarget: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // detail: {
+      //   curPercent: parseInt(curPercent, 10)
+      // },
+      // mark: {},
+      // mut: false,
+      // target: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // timeStamp: 8888888, //
+      // type: 'activeend',
+      // _userTap: false
+      return {
+        detail: detail || {},
+        dataset: dataset || {}
+      };
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+module.exports = {
+  props: {},
+  methods: {
+    ui_tap: function ui_tap(e) {
+      if (this.props.onTap) {
+        this.props.onTap(e);
+      }
+    },
+    ui_touchstart: function ui_touchstart() {
+      if (this.props.onTouchstart) {
+        this.props.onTouchstart();
+      }
+    },
+    ui_touchmove: function ui_touchmove() {
+      if (this.props.onTouchmove) {
+        this.props.onTouchmove();
+      }
+    },
+    ui_touchcancel: function ui_touchcancel() {
+      if (this.props.onTouchcancel) {
+        this.props.onTouchcancel();
+      }
+    },
+    ui_touchend: function ui_touchend() {
+      if (this.props.onTouchend) {
+        this.props.onTouchend();
+      }
+    },
+    ui_longpress: function ui_longpress() {
+      if (this.props.onLongpress) {
+        this.props.onLongpress();
+      }
+    },
+    ui_longtap: function ui_longtap() {
+      if (this.props.onLongtap) {
+        this.props.onLongtap();
+      }
+    },
+    ui_transitionend: function ui_transitionend() {
+      if (this.props.onTransitionend) {
+        this.props.onTransitionend();
+      }
+    },
+    ui_animationstart: function ui_animationstart() {
+      if (this.props.onAnimationstart) {
+        this.props.onAnimationstart();
+      }
+    },
+    ui_animationiteration: function ui_animationiteration() {
+      if (this.props.onAnimationiteration) {
+        this.props.onAnimationiteration();
+      }
+    },
+    ui_animationend: function ui_animationend() {
+      if (this.props.onAnimationend) {
+        this.props.onAnimationend();
+      }
+    },
+    ui_touchforcechange: function ui_touchforcechange() {
+      if (this.props.onTouchforcechange) {
+        this.props.onTouchforcechange();
+      }
+    }
+  }
+};
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _onekit_behavior = __webpack_require__(0);
+
+var _onekit_behavior2 = _interopRequireDefault(_onekit_behavior);
+
+var _toutiao_behavior = __webpack_require__(1);
+
+var _toutiao_behavior2 = _interopRequireDefault(_toutiao_behavior);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+Component({
+  mixins: [_onekit_behavior2.default, _toutiao_behavior2.default],
+  data: {},
+  props: {
+    percent: '',
+    strokeWidth: 6,
+    // color: '',
+    activeColor: '',
+    backgroundColor: '#EBEBEB',
+    active: false,
+    activeMode: ''
+  },
+  didMount: function didMount() {
+    var activeColor = void 0;
+    var activeMode = void 0;
+    /* if (this.props.color) {
+      activeColor = this.props.color
+    } else */
+    if (this.props.activeColor) {
+      activeColor = this.props.activeColor;
+    } else {
+      activeColor = '#F85959';
+    }
+    //
+    if (this.props.activeMode) {
+      activeMode = this.props.activeMode;
+    } else {
+      activeMode = 'backwards';
+    }
+    this.setData({
+      activeColor: activeColor,
+      activeMode: activeMode
+    });
+  },
   didUpdate: function didUpdate() {},
   didUnmount: function didUnmount() {},
 

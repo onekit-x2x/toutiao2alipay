@@ -1,3 +1,43 @@
-<onekit-view>
-  New Page
+<!-- <view> -->
+<!-- <onekit-view onekit-class="page-body">
+  <onekit-view onekit-class="page-section">
+    <onekit-view onekit-class="page-section-title">
+      <text>flex-direction: row\n横向布局</text>
+    </onekit-view>
+    <onekit-view onekit-class="flex-wrapper" onekit-style="flex-direction:row;">
+      <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #73d13d">A</onekit-view>
+      <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #13c2c2">B</onekit-view>
+      <onekit-view hover-class="hover-item" onekit-class="flex-item" onekit-style="background-color: #40a9ff">C</onekit-view>
+    </onekit-view>
+  </onekit-view>
+  <onekit-view onekit-class="page-section">
+    <onekit-view onekit-class="page-section-title">
+      <text>flex-direction: column\n纵向布局</text>
+    </onekit-view>
+    <onekit-view onekit-class="flex-wrapper" onekit-style="flex-direction:column;">
+      <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #73d13d">A</onekit-view>
+      <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #13c2c2">B</onekit-view>
+      <onekit-view onekit-class="flex-item-v" onekit-style="background-color: #40a9ff">C</onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <progress> -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space">
+    <onekit-view onekit-class="page-section page-section-space">
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="20" show-info stroke-width="3" active-color="red" background-color="gray" active="{{true}}"></onekit-progress>
+      </onekit-view>
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="40" active stroke-width="6"></onekit-progress>
+      </onekit-view>
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="60" active stroke-width="3" active-mode="forwards"></onekit-progress>
+      </onekit-view>
+      <onekit-view onekit-class="progress-box">
+        <onekit-progress percent="80" color="#10AEFF" active stroke-width="3"></onekit-progress>
+      </onekit-view>
+    </onekit-view>
+  </onekit-view>
 </onekit-view>

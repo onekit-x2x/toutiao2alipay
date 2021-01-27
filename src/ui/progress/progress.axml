@@ -1,9 +1,10 @@
 <progress
 id="{{onekitId}}"
 class="onekit-progress {{onekitClass}}" 
-style="{{onekitStyle}}"
+style="animation-fill-mode:{{activeMode}};
+        {{onekitStyle}}"
+
 percent="{{percent}}"
-show-info="{{showInfo}}"
 stroke-width="{{strokeWidth}}"
 active-color="{{activeColor}}"
 background-color="{{backgroundColor}}"

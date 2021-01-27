@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 export default {
   props: {
-    onekitId: '', // `id_${Math.random() * 1000}`,
+    onekitId: '' || `id_${Math.random() * 1000}`,
     onekitClass: '',
     onekitStyle: '',
     onekitVersion: '',
+    onekitDataset: null
   },
   data: {},
   onInit() {
@@ -14,6 +15,41 @@ export default {
     //
     if (this.props.onekitClass) {
       getApp().onekit_nodes[`__${this.props.onekitClass}`] = this
+    }
+  },
+  methods: {
+    _dataset() {
+      if (!this.props.onekitDataset) {
+        return {}
+      }
+      const json = `{${this.props.onekitDataset}}`
+      return JSON.parse(json)
+    },
+    _e(detail, dataset) {
+      // currentTarget: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // detail: {
+      //   curPercent: parseInt(curPercent, 10)
+      // },
+      // mark: {},
+      // mut: false,
+      // target: {
+      //   dataset: {},
+      //   id: '',
+      //   offsetLeft: ret[0].left,
+      //   offsetTop: ret[0].top
+      // },
+      // timeStamp: 8888888, //
+      // type: 'activeend',
+      // _userTap: false
+      return {
+        detail: detail || {},
+        dataset: dataset || {}
+      }
     }
   }
 }

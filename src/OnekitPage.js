@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-export default function OnekitPage(tt_object) {
+export default function OnekitPage(swan_object) {
   const my_object = {
     events: {
       onKeyboardHeight(e) {
@@ -9,19 +9,35 @@ export default function OnekitPage(tt_object) {
         }
       }
     },
-    onLoad(query) {
-      if (!getApp().onekit_onKeyboardHeight) {
-        getApp().onekit_onKeyboardHeight = []
+    onLoad(options) {
+      this._setData = this.setData
+      this.setData = function (keyOrData, value) {
+        if (typeof (keyOrData) === 'string') {
+          const data = {}
+          data[keyOrData] = value
+          this._setData(data)
+        } else {
+          this._setData(keyOrData)
+        }
       }
-      if (tt_object.onLoad) {
-        tt_object.onLoad.call(this, query)
+      if (swan_object.onLoad) {
+        swan_object.onLoad.call(this, options || {})
       }
     },
-    animate() {
+    onReady() {
+      if (swan_object.onLoad) {
+        swan_object.onLoad.call(this, this.query)
+      }
+      if (swan_object.onReady) {
+        swan_object.onReady.call(this)
+      }
+    },
+    getData(key) {
+      return this.data[key]
     },
     selectComponent(selector) {
-    // selector = selector.replace(".","$");
-    // selector = selector.replace("-","_");
+      // selector = selector.replace(".","$");
+      // selector = selector.replace("-","_");
       for (const key of Object.keys(this)) {
         if (key.indexOf(selector) >= 0) {
           return this[key]
@@ -31,7 +47,7 @@ export default function OnekitPage(tt_object) {
     },
     selectAllComponents(selector) {
       //  selector = selector.replace(".","$");
-    //   selector = selector.replace("-","_");
+      //   selector = selector.replace("-","_");
       for (const key of Object.keys(this)) {
         if (key.indexOf(selector) >= 0) {
           return [this[key]]
@@ -40,8 +56,8 @@ export default function OnekitPage(tt_object) {
       return []
     }
   }
-  if (tt_object.behaviors) {
-    for (const behavior of tt_object.behaviors) {
+  if (swan_object.behaviors) {
+    for (const behavior of swan_object.behaviors) {
       for (const behavior_key of Object.keys(behavior)) {
         const behavior_value = behavior[behavior_key]
         switch (behavior_key) {
@@ -58,8 +74,8 @@ export default function OnekitPage(tt_object) {
       }
     }
   }
-  for (const key of Object.keys(tt_object)) {
-    const value = tt_object[key]
+  for (const key of Object.keys(swan_object)) {
+    const value = swan_object[key]
     switch (key) {
       case 'behaviors':
         break

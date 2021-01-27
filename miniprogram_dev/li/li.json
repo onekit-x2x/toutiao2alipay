@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "onekit-view": "../toutiao2alipay/ui/view/view"
+    "onekit-view": "../toutiao2alipay/ui/view/view",
+    "onekit-progress": "../toutiao2alipay/ui/progress/progress"
   }
 }

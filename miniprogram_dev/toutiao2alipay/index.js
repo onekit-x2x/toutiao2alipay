@@ -82,11 +82,13 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 24);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */,
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -94,7 +96,7 @@ module.exports =
 
 exports.__esModule = true;
 
-var _PROMISE = __webpack_require__(27);
+var _PROMISE = __webpack_require__(17);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
@@ -126,7 +128,7 @@ var tt = function () {
   };
 
   tt.canIPutStuffOverComponent = function canIPutStuffOverComponent() {
-    return console.warn('canIPutStuffOverComponent is not support');
+    return true;
   };
 
   tt.getUpdateManager = function getUpdateManager() {
@@ -835,15 +837,15 @@ var tt = function () {
   };
 
   tt.getWifiList = function getWifiList(object) {
-    return my.getConnectedWifi(object);
+    return my.getWifiList(object);
   };
 
   tt.onGetWifiList = function onGetWifiList(object) {
-    return my.getConnectedWifi(object);
+    return my.onGetWifiList(object);
   };
 
   tt.offGetWifiList = function offGetWifiList(object) {
-    return my.getConnectedWifi(object);
+    return my.offGetWifiList(object);
   };
 
   // ////// 系统信息  ///////
@@ -853,8 +855,8 @@ var tt = function () {
     return my.getSystemInfo(object);
   };
 
-  tt.getSystemInfoSync = function getSystemInfoSync(object) {
-    return my.getSystemInfoSync(object);
+  tt.getSystemInfoSync = function getSystemInfoSync() {
+    return my.getSystemInfoSync();
   };
 
   tt.getConnectedWifi = function getConnectedWifi(object) {
@@ -864,20 +866,693 @@ var tt = function () {
   // ////// 加速度计  ///////
 
 
+  tt.onAccelerometerChange = function onAccelerometerChange(callback) {
+    my.onAccelerometerChange(function (res) {
+      if (tt._stopAccelerometer) {
+        return;
+      }
+      callback(res);
+    });
+  };
+
+  tt.offAccelerometerChange = function offAccelerometerChange(callback) {
+    my.offAccelerometerChange(function (res) {
+      if (tt._stopAccelerometer) {
+        return;
+      }
+      callback(res);
+    });
+  };
+
+  tt.stopAccelerometer = function stopAccelerometer(tt_object) {
+    tt._stopAccelerometer = true;
+    if (tt_object.success) {
+      tt_object.success();
+    }
+    if (tt_object.complete) {
+      tt_object.complete();
+    }
+  };
+
+  tt.startAccelerometer = function startAccelerometer(tt_object) {
+    tt._stopAccelerometer = false;
+    if (tt_object.success) {
+      tt_object.success();
+    }
+    if (tt_object.complete) {
+      tt_object.complete();
+    }
+  };
+
+  // ////// 罗盘  ///////
+
+
+  tt.onCompassChange = function onCompassChange(callback) {
+    my.onCompassChange(function (res) {
+      if (tt._stopCompass) {
+        return;
+      }
+      callback(res);
+    });
+  };
+
+  tt.stopCompass = function stopCompass(tt_object) {
+    tt._stopCompass = true;
+    if (tt_object.success) {
+      tt_object.success();
+    }
+    if (tt_object.complete) {
+      tt_object.complete();
+    }
+  };
+
+  tt.startCompass = function startCompass(tt_object) {
+    tt._stopCompass = false;
+    if (tt_object.success) {
+      tt_object.success();
+    }
+    if (tt_object.complete) {
+      tt_object.complete();
+    }
+  };
+
+  // ////// 拨打电话  ///////
+
+
+  tt.makePhoneCall = function makePhoneCall(tt_object) {
+    var tt_phoneNumber = tt_object.phoneNumber;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var number = tt_phoneNumber;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.makePhoneCall({
+        number: number,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'makePhoneCall: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  // ////// 扫码  ///////
+
+
+  tt.scanCode = function scanCode(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.scan({
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'scanCode: ok',
+            result: my_res.code,
+            qrCode: my_res.qrCode,
+            barCode: my_res.barCode,
+            codeType: my_res.codeType,
+            codeContent: my_res.codeContent,
+            imageChannel: my_res.imageChannel,
+            rawData: my_res.rawData
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  // ////// 剪切板  ///////
+
+
+  tt.getClipboardData = function getClipboardData(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getClipboard({
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'getClipboardData: ok',
+            data: my_res.text
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.setClipboardData = function setClipboardData(tt_object) {
+    var tt_data = tt_object.data;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var text = tt_data;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.setClipboard({
+        text: text,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'setClipboardData: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  // ////// 屏幕  ///////
+
+
+  tt.setKeepScreenOn = function setKeepScreenOn(object) {
+    return my.setKeepScreenOn(object);
+  };
+
+  tt.onUserCaptureScreen = function onUserCaptureScreen(callback) {
+    return my.onUserCaptureScreen(callback);
+  };
+
+  tt.offUserCaptureScreen = function offUserCaptureScreen(callback) {
+    return my.offUserCaptureScreen(callback);
+  };
+
+  tt.getScreenBrightness = function getScreenBrightness(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getScreenBrightness({
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'getScreenBrightness: ok',
+            value: my_res.brightness
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.setScreenBrightness = function setScreenBrightness(tt_object) {
+    var tt_value = tt_object.value;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var brightness = tt_value;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.setScreenBrightness({
+        brightness: brightness,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'setScreenBrightness: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  // ////// 震动  ///////
+
+
+  tt.vibrateShort = function vibrateShort(object) {
+    return my.vibrateShort(object);
+  };
+
+  tt.vibrateLong = function vibrateLong(object) {
+    return my.vibrateLong(object);
+  };
+
+  // ////// 性能  ///////
+
+
+  tt.onMemoryWarning = function onMemoryWarning(callback) {
+    return my.onMemoryWarning(callback);
+  };
+
+  // ////// 界面  ///////
+
+
+  tt.showToast = function showToast(tt_object) {
+    var tt_title = tt_object.title;
+    var tt_icon = tt_object.icon || 'success';
+    var tt_duration = tt_object.duration || 1500;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var content = tt_title;
+    var type = tt_icon;
+    var duration = tt_duration;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.showToast({
+        content: content,
+        type: type,
+        duration: duration,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'showToast: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.hideToast = function hideToast(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.hideToast({
+        success: function success() {
+          var tt_res = {
+            errMsg: 'hideToast: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.showLoading = function showLoading(tt_object) {
+    var tt_title = tt_object.title;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var content = tt_title;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.showLoading({
+        content: content,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'showLoading: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.hideLoading = function hideLoading(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.hideLoading({
+        success: function success() {
+          var tt_res = {
+            errMsg: 'hideLoading: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.showModal = function showModal(tt_object) {
+    var tt_title = tt_object.title;
+    var tt_content = tt_object.content;
+    var tt_confirmText = tt_object.confirmText || '确定';
+    var tt_cancelText = tt_object.cancelText || '取消';
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var title = tt_title;
+    var content = tt_content;
+    var confirmButtonText = tt_confirmText;
+    var cancelButtonText = tt_cancelText;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.confirm({
+        title: title,
+        content: content,
+        confirmButtonText: confirmButtonText,
+        cancelButtonText: cancelButtonText,
+        success: function success(my_res) {
+          if (my_res.confirm) {
+            var tt_res = {
+              errMsg: 'showModal: ok',
+              confirm: true,
+              cancel: false
+            };
+            SUCCESS(tt_res);
+          } else {
+            var _tt_res = {
+              errMsg: 'showModal: ok',
+              confirm: false,
+              cancel: true
+            };
+            SUCCESS(_tt_res);
+          }
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.showActionSheet = function showActionSheet(tt_object) {
+    var tt_itemList = tt_object.itemList;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var items = tt_itemList;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.showActionSheet({
+        items: items,
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'hideLoading: ok',
+            tapIndex: my_res.index
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.showFavoriteGuide = function showFavoriteGuide() {
+    return console.warn('showFavoriteGuide is not support');
+  };
+
+  tt.showInteractionBar = function showInteractionBar() {
+    return console.warn('showInteractionBar is not support');
+  };
+
+  tt.hideInteractionBar = function hideInteractionBar() {
+    return console.warn('hideInteractionBar is not support');
+  };
+
+  // ////// 导航栏  ///////
+
+
+  tt.showNavigationBarLoading = function showNavigationBarLoading(object) {
+    return my.showNavigationBarLoading(object);
+  };
+
+  tt.hideNavigationBarLoading = function hideNavigationBarLoading(object) {
+    return my.hideNavigationBarLoading(object);
+  };
+
+  tt.hideHomeButton = function hideHomeButton(object) {
+    return my.hideBackHome(object);
+  };
+
+  tt.setNavigationBarTitle = function setNavigationBarTitle(tt_object) {
+    var tt_title = tt_object.title;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var title = tt_title;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.setNavigationBar({
+        title: title,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'setNavigationBarTitle: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.setNavigationBarColor = function setNavigationBarColor(tt_object) {
+    var tt_backgroundColor = tt_object.backgroundColor;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var backgroundColor = tt_backgroundColor;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.setNavigationBar({
+        backgroundColor: backgroundColor,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'setNavigationBarColor: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.getMenuButtonBoundingClientRect = function getMenuButtonBoundingClientRect() {
+    return my.getMenuButtonBoundingClientRect();
+  };
+
+  // ////// 动画  ///////
+
+
+  tt.createAnimation = function createAnimation(object) {
+    return my.createAnimation(object);
+  };
+
+  // ////// 页面位置  ///////
+
+
+  tt.pageScrollTo = function pageScrollTo(object) {
+    return my.pageScrollTo(object);
+  };
+
+  // ////// canvas  ///////
+
+
+  tt.createCanvasContext = function createCanvasContext(id) {
+    return my.createCanvasContext(id);
+  };
+
+  tt.createOffscreenCanvas = function createOffscreenCanvas() {
+    return console.warn('createOffscreenCanvas is not support');
+  };
+
+  tt.canvasToTempFilePath = function canvasToTempFilePath(tt_object) {
+    var tt_canvasId = tt_object.canvasId;
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var canvasId = tt_canvasId;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.canvasToTempFilePath({
+        canvasId: canvasId,
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'canvasToTempFilePath: ok',
+            tempFilePath: my_res.apFilePath
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  // ////// 下拉刷新  ///////
+
+
+  tt.startPullDownRefresh = function startPullDownRefresh(object) {
+    return my.startPullDownRefresh(object);
+  };
+
+  tt.stopPullDownRefresh = function stopPullDownRefresh(object) {
+    return my.stopPullDownRefresh(object);
+  };
+
+  // ////// TabBar  ///////
+
+
+  tt.showTabBarRedDot = function showTabBarRedDot(object) {
+    return my.showTabBarRedDot(object);
+  };
+
+  tt.showTabBar = function showTabBar(object) {
+    return my.showTabBar(object);
+  };
+
+  tt.setTabBarStyle = function setTabBarStyle(tt_object) {
+    var tt_color = tt_object.color || '#ff3377';
+    var tt_selectedColor = tt_object.selectedColor || '#ff3377';
+    var tt_backgroundColor = tt_object.backgroundColor || '#ffffff';
+    var tt_borderStyle = tt_object.borderStyle || 'black';
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var color = tt_color;
+    var selectedColor = tt_selectedColor;
+    var backgroundColor = tt_backgroundColor;
+    var borderStyle = tt_borderStyle;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.setTabBarStyle({
+        color: color,
+        selectedColor: selectedColor,
+        backgroundColor: backgroundColor,
+        borderStyle: borderStyle,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'setTabBarStyle: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.setTabBarItem = function setTabBarItem(tt_object) {
+    var tt_index = tt_object.index;
+    var tt_text = tt_object.text || '';
+    var tt_iconPath = tt_object.iconPath || '';
+    var tt_selectedIconPath = tt_object.selectedIconPath || '';
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    var index = tt_index;
+    var text = tt_text;
+    var iconPath = tt_iconPath;
+    var selectedIconPath = tt_selectedIconPath;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.setTabBarItem({
+        index: index,
+        text: text,
+        iconPath: iconPath,
+        selectedIconPath: selectedIconPath,
+        success: function success() {
+          var tt_res = {
+            errMsg: 'setTabBarItem: ok'
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.setTabBarBadge = function setTabBarBadge(object) {
+    return my.setTabBarBadge(object);
+  };
+
+  tt.removeTabBarBadge = function removeTabBarBadge(object) {
+    return my.removeTabBarBadge(object);
+  };
+
+  tt.hideTabBarRedDot = function hideTabBarRedDot(object) {
+    return my.hideTabBarRedDot(object);
+  };
+
+  tt.hideTabBar = function hideTabBar(object) {
+    return my.hideTabBar(object);
+  };
+
+  // ////// 导航  ///////
+
+
+  tt.navigateTo = function navigateTo(object) {
+    return my.navigateTo(object);
+  };
+
+  tt.redirectTo = function redirectTo(object) {
+    return my.redirectTo(object);
+  };
+
+  tt.switchTab = function switchTab(object) {
+    return my.switchTab(object);
+  };
+
+  tt.navigateBack = function navigateBack(object) {
+    return my.navigateBack(object);
+  };
+
+  tt.reLaunch = function reLaunch(object) {
+    return my.reLaunch(object);
+  };
+
+  // ////// 转发  ///////
+
+
+  tt.showShareMenu = function showShareMenu() {};
+
+  tt.hideShareMenu = function hideShareMenu(object) {
+    return my.hideShareMenu(object);
+  };
+
+  tt.navigateToVideoView = function navigateToVideoView() {
+    return console.warn('navigateToVideoView is not support');
+  };
+
+  // ////// 第三方平台  ///////
+
+
+  tt.getExtConfig = function getExtConfig(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getExtConfig({
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'getExtConfig: ok',
+            extConfig: my_res.data
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  tt.getExtConfigSync = function getExtConfigSync(tt_object) {
+    var tt_success = tt_object.success;
+    var tt_fail = tt_object.fail;
+    var tt_complete = tt_object.complete;
+    tt_object = null;
+    (0, _PROMISE2.default)(function (SUCCESS) {
+      my.getExtConfigSync({
+        success: function success(my_res) {
+          var tt_res = {
+            errMsg: 'getExtConfig: ok',
+            extConfig: my_res.data
+          };
+          SUCCESS(tt_res);
+        }
+      });
+    }, tt_success, tt_fail, tt_complete);
+  };
+
+  // ////// TTML  ///////
+
+
+  tt.createSelectorQuery = function createSelectorQuery() {
+    return my.createSelectorQuery();
+  };
+
+  tt.createIntersectionObserver = function createIntersectionObserver(object) {
+    return my.createIntersectionObserver(object);
+  };
+
   return tt;
 }();
 
 exports.default = tt;
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("oneutil");
 
 /***/ }),
-/* 2 */,
-/* 3 */,
 /* 4 */,
 /* 5 */,
 /* 6 */,
@@ -888,17 +1563,7 @@ module.exports = require("oneutil");
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -906,21 +1571,21 @@ module.exports = require("oneutil");
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GLOBAL = exports.tt = exports.OnekitPage = exports.OnekitComponent = exports.OnekitBehavior = exports.OnekitApp = void 0;
-var OnekitApp_1 = __webpack_require__(25);
+var OnekitApp_1 = __webpack_require__(15);
 exports.OnekitApp = OnekitApp_1.default;
-var OnekitBehavior_1 = __webpack_require__(26);
+var OnekitBehavior_1 = __webpack_require__(16);
 exports.OnekitBehavior = OnekitBehavior_1.default;
-var OnekitComponent_1 = __webpack_require__(28);
+var OnekitComponent_1 = __webpack_require__(18);
 exports.OnekitComponent = OnekitComponent_1.default;
-var OnekitPage_1 = __webpack_require__(29);
+var OnekitPage_1 = __webpack_require__(19);
 exports.OnekitPage = OnekitPage_1.default;
-var tt_1 = __webpack_require__(0);
+var tt_1 = __webpack_require__(2);
 exports.tt = tt_1.default;
-var global_1 = __webpack_require__(30);
+var global_1 = __webpack_require__(20);
 exports.GLOBAL = global_1.default;
 
 /***/ }),
-/* 25 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1017,7 +1682,7 @@ function OnekitApp(tt_object) {
 }
 
 /***/ }),
-/* 26 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1026,11 +1691,11 @@ function OnekitApp(tt_object) {
 exports.__esModule = true;
 exports.default = OnekitBehavior;
 
-var _oneutil = __webpack_require__(1);
+var _oneutil = __webpack_require__(3);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
-var _tt = __webpack_require__(0);
+var _tt = __webpack_require__(2);
 
 var _tt2 = _interopRequireDefault(_tt);
 
@@ -1143,7 +1808,7 @@ function OnekitBehavior(object) {
 }
 
 /***/ }),
-/* 27 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1182,7 +1847,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 28 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1191,11 +1856,11 @@ __webpack_require__.r(__webpack_exports__);
 exports.__esModule = true;
 exports.default = OnekitComponent;
 
-var _oneutil = __webpack_require__(1);
+var _oneutil = __webpack_require__(3);
 
 var _oneutil2 = _interopRequireDefault(_oneutil);
 
-var _tt = __webpack_require__(0);
+var _tt = __webpack_require__(2);
 
 var _tt2 = _interopRequireDefault(_tt);
 
@@ -1378,7 +2043,7 @@ function OnekitComponent(object) {
 }
 
 /***/ }),
-/* 29 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1388,7 +2053,7 @@ exports.__esModule = true;
 exports.default = OnekitPage;
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
-function OnekitPage(tt_object) {
+function OnekitPage(swan_object) {
   var my_object = {
     events: {
       onKeyboardHeight: function onKeyboardHeight(e) {
@@ -1410,15 +2075,32 @@ function OnekitPage(tt_object) {
         }
       }
     },
-    onLoad: function onLoad(query) {
-      if (!getApp().onekit_onKeyboardHeight) {
-        getApp().onekit_onKeyboardHeight = [];
-      }
-      if (tt_object.onLoad) {
-        tt_object.onLoad.call(this, query);
+    onLoad: function onLoad(options) {
+      this._setData = this.setData;
+      this.setData = function (keyOrData, value) {
+        if (typeof keyOrData === 'string') {
+          var data = {};
+          data[keyOrData] = value;
+          this._setData(data);
+        } else {
+          this._setData(keyOrData);
+        }
+      };
+      if (swan_object.onLoad) {
+        swan_object.onLoad.call(this, options || {});
       }
     },
-    animate: function animate() {},
+    onReady: function onReady() {
+      if (swan_object.onLoad) {
+        swan_object.onLoad.call(this, this.query);
+      }
+      if (swan_object.onReady) {
+        swan_object.onReady.call(this);
+      }
+    },
+    getData: function getData(key) {
+      return this.data[key];
+    },
     selectComponent: function selectComponent(selector) {
       // selector = selector.replace(".","$");
       // selector = selector.replace("-","_");
@@ -1466,8 +2148,8 @@ function OnekitPage(tt_object) {
       return [];
     }
   };
-  if (tt_object.behaviors) {
-    for (var _iterator4 = tt_object.behaviors, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+  if (swan_object.behaviors) {
+    for (var _iterator4 = swan_object.behaviors, _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
       var _ref4;
 
       if (_isArray4) {
@@ -1523,7 +2205,7 @@ function OnekitPage(tt_object) {
       }
     }
   }
-  for (var _iterator7 = Object.keys(tt_object), _isArray7 = Array.isArray(_iterator7), _i7 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
+  for (var _iterator7 = Object.keys(swan_object), _isArray7 = Array.isArray(_iterator7), _i7 = 0, _iterator7 = _isArray7 ? _iterator7 : _iterator7[Symbol.iterator]();;) {
     var _ref7;
 
     if (_isArray7) {
@@ -1537,7 +2219,7 @@ function OnekitPage(tt_object) {
 
     var key = _ref7;
 
-    var value = tt_object[key];
+    var value = swan_object[key];
     switch (key) {
       case 'behaviors':
         break;
@@ -1552,7 +2234,7 @@ function OnekitPage(tt_object) {
 }
 
 /***/ }),
-/* 30 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
