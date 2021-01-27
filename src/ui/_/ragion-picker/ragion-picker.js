@@ -17,7 +17,7 @@ Component({
     onekitId: '',
     headerText: null,
     disabled: false,
-    value: VALUE,
+    value: null,
     customItem: ''
   },
   methods: {
@@ -44,12 +44,11 @@ Component({
       if (this.props.disabled) {
         return
       }
-      const value = this.props.value
+      const value = this.props.value || VALUE
       const provinces_index = this._initColumn(PROVINCES, value[0])
       const citys_index = this._initColumn(CITYS[`id${provinces_index.rows[provinces_index.index].id}`], value[1])
       const towns_index = this._initColumn(TOWNS[`id${citys_index.rows[citys_index.index].id}`], value[2])
       //
-      console.log(provinces_index, citys_index, towns_index)
       this.setData({
         show: true,
         provinces: provinces_index.rows,
@@ -72,9 +71,9 @@ Component({
       this.setData({
         show: false
       })
-      const selectedProvince = this.data.provinces[this.data.selectedProvinceIndex]
-      const selectedCity = this.data.citys[this.data.selectedCityIndex]
-      const selectedTown = this.data.towns[this.data.selectedTownIndex]
+      const selectedProvince = this.data.provinces[this.data.provinceIndexes[0]]
+      const selectedCity = this.data.citys[this.data.cityIndexes[0]]
+      const selectedTown = this.data.towns[this.data.townIndexes[0]]
       //
       const value = [selectedProvince.name, selectedCity.name, selectedTown.name]
       const code = []
@@ -102,9 +101,9 @@ Component({
       }
     },
     province_change(e) {
-      const selectedProvinceIndex = this.data.selectedProvinceIndex = e.detail.value[0]
+      this.data.provinceIndexes = e.detail.value
       //
-      const province = this.data.provinces[selectedProvinceIndex]
+      const province = this.data.provinces[this.data.provinceIndexes[0]]
       const citys_index = this._initColumn(CITYS[`id${province.id}`])
       //
       const towns_index = this._initColumn(TOWNS[`id${citys_index.rows[0].id}`])
@@ -117,9 +116,9 @@ Component({
       })
     },
     city_change(e) {
-      const selectedCityIndex = this.data.selectedCityIndex = e.detail.value[0]
+      this.data.cityIndexes = e.detail.value
       //
-      const city = this.data.citys[selectedCityIndex]
+      const city = this.data.citys[this.data.cityIndexes[0]]
       const towns_index = this._initColumn(TOWNS[`id${city.id}`])
       //
       this.setData({
@@ -128,7 +127,7 @@ Component({
       })
     },
     town_change(e) {
-      this.data.selectedTownIndex = e.detail.value[0]
+      this.data.townIndexes = e.detail.value[0]
     }
   },
 })
