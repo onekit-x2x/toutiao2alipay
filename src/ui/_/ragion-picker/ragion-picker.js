@@ -127,7 +127,7 @@ Component({
       })
     },
     town_change(e) {
-      this.data.townIndexes = e.detail.value[0]
+      this.data.townIndexes = e.detail.value
     }
   },
 })
