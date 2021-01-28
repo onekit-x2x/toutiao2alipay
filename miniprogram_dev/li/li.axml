@@ -169,7 +169,7 @@
 </onekit-view> -->
 
 <!-- <navigator> -->
-<onekit-view onekit-class="container">
+<!-- <onekit-view onekit-class="container">
   <onekit-view onekit-class="body body-space">
     <onekit-view onekit-class="btn-area">
       <onekit-navigator url="navigate?title=navigate" open-type="navigate" hover-class="navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
@@ -184,6 +184,39 @@
       <onekit-navigator url="/pages/component/index" open-type="switchTab" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
         <button type="default">跳转到首页</button>
       </onekit-navigator>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <video> -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space-l">
+    <onekit-view onekit-class="page-section">
+      <onekit-video onekit-id="myVideo" src="https://sf1-ttcdn-tos.pstatp.com/obj/developer/sdk/1534422848153.mp4" onError="videoErrorCallback" onekit-style="width: 100%;" show-fullscreen-btn="{{isFullscreen}}" show-play-btn="{{isShowPlayBtn}}" loop="{{isLoopPlay}}" controls="{{isShowControls}}" play-btn-position="{{playBtnPosition}}" object-fit="{{objectFitType}}" poster="{{poster}}" onTimeupdate="bindtimeupdate" onEnded="bindended" onPlay="bindplay" onPause="bindpause" onWaiting="bindwaiting" post-roll-unit-id="{{unitId}}" onAdstart="bindadstart" onAdclose="bindadclose" onAderror="bindaderror" onAdload="bindadload"></onekit-video>
+    </onekit-view>
+    <onekit-view onekit-class="btn-set-row">
+      <button type="mini" size="mini" onTap="switchFullScreen">
+        {{isFullscreen ? '隐藏全屏按钮' : '显示全屏按钮'}}
+      </button>
+      <button type="mini" size="mini" onTap="switchLoopPlay">
+        {{isLoopPlay ? '关闭循环播放' : '开启循环播放'}}
+      </button>
+    </onekit-view>
+    <onekit-view onekit-class="btn-set-row">
+      <button type="mini" size="mini" onTap="switchPlayBtn">
+        {{isShowPlayBtn ? '隐藏播放按钮' : '显示播放按钮'}}
+      </button>
+      <button type="mini" size="mini" onTap="switchControls">
+        {{isShowControls ? '隐藏全部控件' : '显示全部控件'}}
+      </button>
+    </onekit-view>
+    <onekit-view onekit-class="btn-set-row">
+      <button type="mini" size="mini" onTap="switchPlayBtnPosition">
+        {{playBtnPosition === 'center' ? '播放按钮下移' : '播放按钮居中'}}
+      </button>
+      <button type="mini" size="mini" onTap="switchFit">
+        裁剪模式切换
+      </button>
     </onekit-view>
   </onekit-view>
 </onekit-view>

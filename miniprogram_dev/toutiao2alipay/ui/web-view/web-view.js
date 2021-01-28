@@ -250,12 +250,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Component({
   mixins: [_onekit_behavior2.default, _toutiao_behavior2.default],
   data: {},
-  props: {},
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
-  methods: {}
+  props: {
+    url: '',
+    delta: 1,
+    openType: 'navigate',
+    hoverClass: 'navigator-hover',
+    hoverStartTime: 50,
+    hoverStayTime: 400,
+    hoverStopPropagation: false
+  },
+  methods: {
+    navigator_tap: function navigator_tap(e) {
+      if (this.props.openType === 'navigateBack') {
+        my.navigateBack({
+          delta: this.props.delta
+        });
+      }
+      if (this.props.onTap) {
+        this.props.onTap(e);
+      }
+    },
+    view_tap: function view_tap(e) {
+      if (!this.props.hoverStopPropagation) {
+        if (this.props.onTap) {
+          this.props.onTap(e);
+        }
+      }
+    }
+  }
 });
 
 /***/ })

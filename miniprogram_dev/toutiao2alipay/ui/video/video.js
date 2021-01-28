@@ -252,26 +252,35 @@ Component({
   data: {},
   props: {
     src: '',
-    duration: '',
-    controls: true,
-    autoplay: true,
+    autoplay: false,
+    poster: '',
     loop: false,
-    muted: false,
-    initialTime: Number,
-    pageGesture: false,
-    direction: '',
     showFullscreenBtn: true,
     showPlayBtn: true,
-    showCenterPlayBtn: true,
-    enableProgressGesture: true,
-    poster: '',
-    showMuteBtn: false
+    controls: true,
+    objectFit: 'contain',
+    playBtnPosition: 'center',
+    // 广告做不了
+    preRollUnitId: '',
+    postRollUnitId: ''
   },
   didMount: function didMount() {
-    // var video = my.createVideoContext("video");
+    var _this = this;
+
+    my.createSelectorQuery().select('.onekit-video').boundingClientRect().exec(function (rect) {
+      _this.setData({
+        rect: rect[0]
+      });
+    });
+    if (this.props.playBtnPosition === 'center') {
+      this.data.showPlayBtn = false;
+      this.data.showCenterPlayBtn = true;
+    } else if (this.props.playBtnPosition === 'bottom') {
+      this.data.showPlayBtn = true;
+      this.data.showCenterPlayBtn = false;
+    }
+    this.setData(this.data);
   },
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
 
   methods: {
     video_play: function video_play() {
@@ -289,9 +298,15 @@ Component({
         this.props.onEnded({});
       }
     },
-    video_timeupdate: function video_timeupdate() {
+    video_error: function video_error() {
+      if (this.props.onError) {
+        this.props.onError({});
+      }
+    },
+    video_timeupdate: function video_timeupdate(e) {
+      this.currentTime = e.detail.currentTime;
       if (this.props.onTimeUpdate) {
-        this.props.onTimeUpdate({});
+        this.props.onTimeUpdate(e.detail);
       }
     },
     video_fullscreenchange: function video_fullscreenchange() {
@@ -299,10 +314,65 @@ Component({
         this.props.onFullScreenChange({});
       }
     },
-    video_error: function video_error() {
-      if (this.props.onError) {
-        this.props.onError({});
+    video_waiting: function video_waiting() {
+      if (this.props.onLoading) {
+        this.props.onLoading({});
       }
+    },
+
+    // 广告做不了
+    _trigger_adstart: function _trigger_adstart(_ref) {
+      var detail = _ref.detail;
+
+      // eslint-disable-next-line no-bitwise
+      detail = { adType: 'preRollAd' | 'postRollAd' };
+      if (this.props.onAdstart) {
+        this.props.onAdstart({ detail: detail });
+      }
+    },
+    _trigger_adended: function _trigger_adended(_ref2) {
+      var detail = _ref2.detail;
+
+      // eslint-disable-next-line no-bitwise
+      detail = { adType: 'preRollAd' | 'postRollAd' };
+      if (this.props.onAdended) {
+        this.props.onAdended({ detail: detail });
+      }
+    },
+    _trigger_adload: function _trigger_adload(_ref3) {
+      var detail = _ref3.detail;
+
+      // eslint-disable-next-line no-bitwise
+      detail = { adType: 'preRollAd' | 'postRollAd' };
+      if (this.props.onAdload) {
+        this.props.onAdload({ detail: detail });
+      }
+    },
+    _trigger_adclose: function _trigger_adclose(_ref4) {
+      var detail = _ref4.detail;
+
+      // eslint-disable-next-line no-bitwise
+      detail = { adType: 'preRollAd' | 'postRollAd' };
+      if (this.props.onAdclose) {
+        this.props.onAdclose({ detail: detail });
+      }
+    },
+    _trigger_aderror: function _trigger_aderror(_ref5) {
+      var detail = _ref5.detail;
+
+      // eslint-disable-next-line no-bitwise
+      detail = { adType: 'preRollAd' | 'postRollAd' };
+      if (this.props.onAderror) {
+        this.props.onAderror({ detail: detail });
+      }
+    },
+
+    //
+    video_renderstart: function video_renderstart(e) {
+      console.log('[video.renderstart]', e);
+      //   if (this.props.onLoadedmetadata) {
+      //     this.props.onLoadedmetadata({})
+      //   }
     }
   }
 });

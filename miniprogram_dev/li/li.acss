@@ -49,10 +49,17 @@
 } */
 
 /* picker */
-.picker{
+/* .picker{
   padding: 19rpx 26rpx;
   background-color: #FFFFFF;
 }
 .page-section {
   margin-bottom: 32rpx;
+} */
+
+/* video */
+.btn-set-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 }

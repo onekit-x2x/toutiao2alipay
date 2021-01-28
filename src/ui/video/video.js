@@ -8,26 +8,34 @@ Component({
   data: {},
   props: {
     src: '',
-    duration: '',
-    controls: true,
-    autoplay: true,
+    autoplay: false,
+    poster: '',
     loop: false,
-    muted: false,
-    initialTime: Number,
-    pageGesture: false,
-    direction: '',
     showFullscreenBtn: true,
     showPlayBtn: true,
-    showCenterPlayBtn: true,
-    enableProgressGesture: true,
-    poster: '',
-    showMuteBtn: false,
+    controls: true,
+    objectFit: 'contain',
+    playBtnPosition: 'center',
+    // 广告做不了
+    preRollUnitId: '',
+    postRollUnitId: '',
   },
   didMount() {
-    // var video = my.createVideoContext("video");
+    my.createSelectorQuery()
+      .select('.onekit-video').boundingClientRect().exec((rect) => {
+        this.setData({
+          rect: rect[0]
+        })
+      })
+    if (this.props.playBtnPosition === 'center') {
+      this.data.showPlayBtn = false
+      this.data.showCenterPlayBtn = true
+    } else if (this.props.playBtnPosition === 'bottom') {
+      this.data.showPlayBtn = true
+      this.data.showCenterPlayBtn = false
+    }
+    this.setData(this.data)
   },
-  didUpdate() {},
-  didUnmount() {},
   methods: {
     video_play() {
       if (this.props.onPlay) {
@@ -44,9 +52,15 @@ Component({
         this.props.onEnded({})
       }
     },
-    video_timeupdate() {
+    video_error() {
+      if (this.props.onError) {
+        this.props.onError({})
+      }
+    },
+    video_timeupdate(e) {
+      this.currentTime = e.detail.currentTime
       if (this.props.onTimeUpdate) {
-        this.props.onTimeUpdate({})
+        this.props.onTimeUpdate(e.detail)
       }
     },
     video_fullscreenchange() {
@@ -54,10 +68,53 @@ Component({
         this.props.onFullScreenChange({})
       }
     },
-    video_error() {
-      if (this.props.onError) {
-        this.props.onError({})
+    video_waiting() {
+      if (this.props.onLoading) {
+        this.props.onLoading({})
       }
+    },
+    // 广告做不了
+    _trigger_adstart({detail}) {
+      // eslint-disable-next-line no-bitwise
+      detail = {adType: 'preRollAd' | 'postRollAd'}
+      if (this.props.onAdstart) {
+        this.props.onAdstart({detail})
+      }
+    },
+    _trigger_adended({detail}) {
+      // eslint-disable-next-line no-bitwise
+      detail = {adType: 'preRollAd' | 'postRollAd'}
+      if (this.props.onAdended) {
+        this.props.onAdended({detail})
+      }
+    },
+    _trigger_adload({detail}) {
+      // eslint-disable-next-line no-bitwise
+      detail = {adType: 'preRollAd' | 'postRollAd'}
+      if (this.props.onAdload) {
+        this.props.onAdload({detail})
+      }
+    },
+    _trigger_adclose({detail}) {
+      // eslint-disable-next-line no-bitwise
+      detail = {adType: 'preRollAd' | 'postRollAd'}
+      if (this.props.onAdclose) {
+        this.props.onAdclose({detail})
+      }
+    },
+    _trigger_aderror({detail}) {
+      // eslint-disable-next-line no-bitwise
+      detail = {adType: 'preRollAd' | 'postRollAd'}
+      if (this.props.onAderror) {
+        this.props.onAderror({detail})
+      }
+    },
+    //
+    video_renderstart(e) {
+      console.log('[video.renderstart]', e)
+      //   if (this.props.onLoadedmetadata) {
+      //     this.props.onLoadedmetadata({})
+      //   }
     },
   }
 })

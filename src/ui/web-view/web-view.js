@@ -8,7 +8,6 @@ Component({
   data: {},
   props: {
     url: '',
-    //
     delta: 1,
     openType: 'navigate',
     hoverClass: 'navigator-hover',

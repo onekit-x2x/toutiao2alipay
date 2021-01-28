@@ -260,10 +260,6 @@ Component({
     end: '',
     customItem: ''
   },
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
-
   methods: {
     picker_Cancle: function picker_Cancle(e) {
       if (this.props.onCancle) {

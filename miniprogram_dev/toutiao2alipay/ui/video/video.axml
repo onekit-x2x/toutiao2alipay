@@ -1,32 +1,24 @@
-<video  
-id="{{onekitId}}"
-class="{{onekitClass}}"
-style="{{onekitStyle}}"
-src="{{src}}" 
-duration="{{duration}}" 
-controls="{{controls}}" 
-autoplay="{{autoplay}}" 
-loop="{{loop}}" 
-muted="{{muted}}" 
-initial-time="{{initialTime}}" 
-page-gesture="{{pageGesture}}" 
-direction="{{direction}}" 
-show-fullscreen-btn="{{showFullscreenBtn}}" 
-show-play-btn="{{showPlayBtn}}" 
-show-center-play-btn="{{showCenterPlayBtn}}" 
-enable-progress-gesture="{{enableProgressGesture}}" 
-poster="{{poster}}" 
-show-mute-btn="{{showMuteBtn}}" 
+<video
+  class="onekit-video {{onekitClass}}"
+  style="{{onekitStyle}}"
+  id="{{onekitId}}"
+  
+  src="{{src}}"
+  poster="{{poster}}"
+  object-fit="{{objectFit}}"
+  controls="{{controls}}"
+  autoplay="{{autoplay}}"
+  loop="{{loop}}"
+  show-fullscreen-btn="{{showFullscreenBtn}}" 
+  show-play-btn="{{showPlayBtn}}"
+  show-center-play-btn="{{showCenterPlayBtn}}"
 
-
-
-onPlay="video_play" 
-onPause="video_pause" 
-onEnded="video_end" 
-onTimeupdate="video_timeupdate" 
-onFullscreenchange="video_fullscreenchange" 
-onError="video_error" 
-
-
-
+  onPlay="video_play" 
+  onPause="video_pause" 
+  onEnded="video_end" 
+  onTimeUpdate="video_timeupdate" 
+  onLoading="video_waiting"
+  onError="video_error"
+  onFullscreenchange="video_fullscreenchange"
+  onRenderStart="video_renderstart"
 />
