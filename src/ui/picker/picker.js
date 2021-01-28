@@ -16,9 +16,6 @@ Component({
     end: '',
     customItem: ''
   },
-  didMount() {},
-  didUpdate() {},
-  didUnmount() {},
   methods: {
     picker_Cancle(e) {
       if (this.props.onCancle) {

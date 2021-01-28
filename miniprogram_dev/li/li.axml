@@ -97,7 +97,7 @@
 </onekit-view> -->
 
 <!-- picker -->
-<onekit-view onekit-class="container">
+<!-- <onekit-view onekit-class="container">
   <onekit-view onekit-class="body">
     <onekit-view onekit-class="page-section">
       <onekit-view onekit-class="page-section">
@@ -158,12 +158,32 @@
       </onekit-view>
       <onekit-view onekit-class="page-section">
         <onekit-view onekit-class="page-section-title page-section-title-space">省市区选择器</onekit-view>
-        <onekit-picker mode="region" onChange="bindRegionChange" value="{{region}}" custom-item=""> 
+        <onekit-picker mode="region" onChange="bindRegionChange" value="{{region}}" custom-item="xxx"> 
           <onekit-view onekit-class="picker">
             当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
           </onekit-view>
         </onekit-picker>
       </onekit-view>
+    </onekit-view>
+  </onekit-view>
+</onekit-view> -->
+
+<!-- <navigator> -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="body body-space">
+    <onekit-view onekit-class="btn-area">
+      <onekit-navigator url="navigate?title=navigate" open-type="navigate" hover-class="navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">跳转到新页面</button>
+      </onekit-navigator>
+      <onekit-navigator url="redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">在当前页打开</button>
+      </onekit-navigator>
+      <onekit-navigator delta="1" open-type="navigateBack" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">返回上一页</button>
+      </onekit-navigator>
+      <onekit-navigator url="/pages/component/index" open-type="switchTab" hover-class="other-navigator-hover" hover-start-time="50" hover-stay-time="400" hover-stop-propagation="{{false}}">
+        <button type="default">跳转到首页</button>
+      </onekit-navigator>
     </onekit-view>
   </onekit-view>
 </onekit-view>

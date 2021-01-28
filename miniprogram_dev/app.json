@@ -1,7 +1,9 @@
 {
   "pages": [
     "li/li",
-    "zeng/zeng"
+    "zeng/zeng",
+    "li/navigate",
+    "li/redirect"
   ],
   "window": {
     "navigationBarTextStyle": "black",
