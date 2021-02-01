@@ -6,6 +6,7 @@
     "onekit-switch": "../toutiao2alipay/ui/switch/switch",
     "onekit-picker": "../toutiao2alipay/ui/picker/picker",
     "onekit-navigator": "../toutiao2alipay/ui/navigator/navigator",
-    "onekit-video": "../toutiao2alipay/ui/video/video"
+    "onekit-video": "../toutiao2alipay/ui/video/video",
+    "onekit-canvas": "../toutiao2alipay/ui/canvas/canvas"
   }
 }

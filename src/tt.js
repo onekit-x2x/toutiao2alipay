@@ -2,7 +2,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 
-import PROMISE from '../node_modules/oneutil/PROMISE'
+import PROMISE from 'oneutil/PROMISE'
+import CanvasContext from './api/CanvasContext'
 
 export default class tt {
   // ///////////  基础 ////////////
@@ -1160,8 +1161,8 @@ export default class tt {
   }
 
   // ////// canvas  ///////
-  static createCanvasContext(id) {
-    return my.createCanvasContext(id)
+  static createCanvasContext(canvasId) {
+    return new CanvasContext(my.createCanvasContext(canvasId))
   }
 
   static createOffscreenCanvas() {

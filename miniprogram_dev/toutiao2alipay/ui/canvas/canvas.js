@@ -250,12 +250,70 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 Component({
   mixins: [_onekit_behavior2.default, _toutiao_behavior2.default],
   data: {},
-  props: {},
-  didMount: function didMount() {},
-  didUpdate: function didUpdate() {},
-  didUnmount: function didUnmount() {},
+  props: {
+    type: '2d',
+    canvasId: ''
+  },
 
-  methods: {}
+  didMount: function didMount() {
+    var onekitId = this.props.canvasId || this.props.onekitId;
+    this.setData({ onekitId: onekitId });
+  },
+
+  methods: {
+    canvas_touchstart: function canvas_touchstart(_ref) {
+      var detail = _ref.detail;
+
+      var dataset = this._dataset();
+      if (this.props.onTouchstart) {
+        this.props.onTouchstart({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    },
+    canvas_touchmove: function canvas_touchmove(_ref2) {
+      var detail = _ref2.detail;
+
+      var dataset = this._dataset();
+      if (this.props.onTouchmove) {
+        this.props.onTouchmove({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    },
+    canvas_touchend: function canvas_touchend(_ref3) {
+      var detail = _ref3.detail;
+
+      var dataset = this._dataset();
+      if (this.props.onTouchend) {
+        this.props.onTouchend({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    },
+    canvas_touchcancel: function canvas_touchcancel(_ref4) {
+      var detail = _ref4.detail;
+
+      var dataset = this._dataset();
+      if (this.props.onTouchcancel) {
+        this.props.onTouchcancel({
+          detail: detail,
+          currentTarget: {
+            dataset: dataset
+          }
+        });
+      }
+    }
+  }
 });
 
 /***/ })

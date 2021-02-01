@@ -283,35 +283,34 @@ Component({
   },
 
   methods: {
-    video_play: function video_play() {
+    video_play: function video_play(e) {
       if (this.props.onPlay) {
-        this.props.onPlay({});
+        this.props.onPlay(e);
       }
     },
-    video_pause: function video_pause() {
+    video_pause: function video_pause(e) {
       if (this.props.onPause) {
-        this.props.onPause({});
+        this.props.onPause(e);
       }
     },
-    video_end: function video_end() {
+    video_end: function video_end(e) {
       if (this.props.onEnded) {
-        this.props.onEnded({});
+        this.props.onEnded(e);
       }
     },
-    video_error: function video_error() {
+    video_error: function video_error(e) {
       if (this.props.onError) {
-        this.props.onError({});
+        this.props.onError(e);
       }
     },
     video_timeupdate: function video_timeupdate(e) {
-      this.currentTime = e.detail.currentTime;
       if (this.props.onTimeUpdate) {
-        this.props.onTimeUpdate(e.detail);
+        this.props.onTimeUpdate(e);
       }
     },
-    video_fullscreenchange: function video_fullscreenchange() {
+    video_fullscreenchange: function video_fullscreenchange(e) {
       if (this.props.onFullScreenChange) {
-        this.props.onFullScreenChange({});
+        this.props.onFullScreenChange(e);
       }
     },
     video_waiting: function video_waiting() {

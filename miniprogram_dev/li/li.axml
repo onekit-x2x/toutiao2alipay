@@ -189,7 +189,7 @@
 </onekit-view> -->
 
 <!-- <video> -->
-<onekit-view onekit-class="container">
+<!-- <onekit-view onekit-class="container">
   <onekit-view onekit-class="body body-space-l">
     <onekit-view onekit-class="page-section">
       <onekit-video onekit-id="myVideo" src="https://sf1-ttcdn-tos.pstatp.com/obj/developer/sdk/1534422848153.mp4" onError="videoErrorCallback" onekit-style="width: 100%;" show-fullscreen-btn="{{isFullscreen}}" show-play-btn="{{isShowPlayBtn}}" loop="{{isLoopPlay}}" controls="{{isShowControls}}" play-btn-position="{{playBtnPosition}}" object-fit="{{objectFitType}}" poster="{{poster}}" onTimeupdate="bindtimeupdate" onEnded="bindended" onPlay="bindplay" onPause="bindpause" onWaiting="bindwaiting" post-roll-unit-id="{{unitId}}" onAdstart="bindadstart" onAdclose="bindadclose" onAderror="bindaderror" onAdload="bindadload"></onekit-video>
@@ -219,4 +219,17 @@
       </button>
     </onekit-view>
   </onekit-view>
+</onekit-view> -->
+
+<!-- <canvas> -->
+<onekit-view onekit-class="container">
+  <onekit-view onekit-class="canvas-intro">canvas基础绘画能力</onekit-view>
+	<onekit-view onekit-class="canvas-item">
+		<onekit-canvas canvas-id="{{id}}" onTouchstart="testBindtouchstart" onTouchmove="testBindtouchmove" onTouchend="testBindtouchend" onTouchcancel="testBindtouchcancel" onError="testBinderror" onekit-style="width: {{width+100}}px; height: 100px;border: 1px solid blue"></onekit-canvas>
+		<onekit-view onekit-class="expection">预期：一个小人</onekit-view>
+	</onekit-view>
+	<onekit-view onekit-class="canvas-item">
+		<!-- <onekit-canvas onekit-id="canvas_type_2d" type="2d" onError="testBinderror" onTouchstart="testBindtouchstart" onTouchmove="testBindtouchmove" onTouchcancel="testBindtouchcancel" onTouchend="testBindtouchend" onekit-style="width: {{width+100}}px; height: 100px;border: 1px solid blue" onekit-dataset='"key":{{_("native-2d")}}'></onekit-canvas> -->
+		<onekit-view onekit-class="expection">预期：canvas 2d</onekit-view>
+	</onekit-view>
 </onekit-view>

@@ -2,6 +2,12 @@
 class="onekit-canvas {{onekitClass}}"
 style="{{onekitStyle}}"
 id="{{onekitId}}"
+
+type="{{type}}"
+
+onTouchStart="canvas_touchstart"
+onTouchMove="canvas_touchmove"
+onTouchEnd="canvas_touchend"
+onTouchCancel="canvas_touchcancel"
 >
-<slot></slot>
 </canvas>

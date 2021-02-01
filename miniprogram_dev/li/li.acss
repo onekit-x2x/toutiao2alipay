@@ -58,8 +58,31 @@
 } */
 
 /* video */
-.btn-set-row {
+/* .btn-set-row {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+} */
+
+/* canvas */
+.canvas-intro {
+    text-align: center;
+    margin: 20rpx;
+}
+
+.canvas-item {
+    margin: 20rpx 15rpx;
+    padding: 15rpx;
+    border: 2px #eee dashed;
+    border-radius: 10rpx;
+    font-size: 18px;
+}
+
+.expection {
+    margin: 10rpx 0 0;
+    font-size: 14px;
+}
+
+.nav {
+    text-align: center;
 }
