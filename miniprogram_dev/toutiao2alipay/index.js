@@ -106,6 +106,10 @@ var _PROMISE = __webpack_require__(28);
 
 var _PROMISE2 = _interopRequireDefault(_PROMISE);
 
+var _SelectorQuery = __webpack_require__(29);
+
+var _SelectorQuery2 = _interopRequireDefault(_SelectorQuery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable no-octal */
@@ -1540,7 +1544,7 @@ var tt = function () {
 
 
   tt.createSelectorQuery = function createSelectorQuery() {
-    return my.createSelectorQuery();
+    return new _SelectorQuery2.default();
   };
 
   tt.createIntersectionObserver = function createIntersectionObserver(object) {
@@ -1586,13 +1590,13 @@ var OnekitApp_1 = __webpack_require__(26);
 exports.OnekitApp = OnekitApp_1.default;
 var OnekitBehavior_1 = __webpack_require__(27);
 exports.OnekitBehavior = OnekitBehavior_1.default;
-var OnekitComponent_1 = __webpack_require__(29);
+var OnekitComponent_1 = __webpack_require__(31);
 exports.OnekitComponent = OnekitComponent_1.default;
-var OnekitPage_1 = __webpack_require__(30);
+var OnekitPage_1 = __webpack_require__(32);
 exports.OnekitPage = OnekitPage_1.default;
 var tt_1 = __webpack_require__(3);
 exports.tt = tt_1.default;
-var global_1 = __webpack_require__(31);
+var global_1 = __webpack_require__(33);
 exports.GLOBAL = global_1.default;
 
 /***/ }),
@@ -1820,45 +1824,230 @@ function OnekitBehavior(object) {
 
 /***/ }),
 /* 28 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* eslint-disable camelcase */
-/* harmony default export */ __webpack_exports__["default"] = (function (body, success, fail, complete) {
-  try {
-    return body(res => {
-      if (success) {
-        success(res)
-      }
-      if (complete) {
-        complete(res)
-      }
-    }, res => {
-      if (fail) {
-        fail(res)
-      }
-      if (complete) {
-        complete(res)
-      }
-    },)
-  } catch (e) {
-    const res = {
-      errMsg: e.message
-    }
-    if (fail) {
-      fail(res)
-    }
-    if (complete) {
-      complete(res)
-    }
-    return null
-  }
-});
-
+module.exports = require("oneutil/PROMISE");
 
 /***/ }),
 /* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _NodesRef = __webpack_require__(30);
+
+var _NodesRef2 = _interopRequireDefault(_NodesRef);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /* eslint-disable no-console */
+/* eslint-disable camelcase */
+
+
+// import VideoContext from './VideoContext'
+
+function _fix(selector) {
+  if (selector.startsWith('#')) {
+    return '_' + selector.substring(1);
+  } else if (selector.startsWith('.')) {
+    return '__' + selector.substring(1);
+  } else {
+    throw new Error(selector);
+  }
+}
+
+var SelectorQuery = function () {
+  function SelectorQuery() {
+    _classCallCheck(this, SelectorQuery);
+
+    this.tasks = [];
+  }
+
+  SelectorQuery.prototype.in = function _in() {
+    return this;
+  };
+
+  SelectorQuery.prototype.select = function select(selector) {
+    return new _NodesRef2.default(this, 'select', selector);
+  };
+
+  SelectorQuery.prototype.selectAll = function selectAll() {
+    return new _NodesRef2.default(this, 'selectAll');
+  };
+
+  SelectorQuery.prototype.selectViewport = function selectViewport() {
+    return new _NodesRef2.default(this, 'selectViewport');
+  };
+
+  SelectorQuery.prototype.exec = function exec(callback) {
+    var that = this;
+    var results = [];
+    var i = 0;
+
+    function done(nodeRef, res) {
+      if (nodeRef.callback) {
+        nodeRef.callback(res);
+      }
+      results.push(res);
+      if (results.length < that.tasks.length) {
+        i++;
+        // eslint-disable-next-line no-use-before-define
+        next();
+        return;
+      }
+      callback(results);
+    }
+
+    function next() {
+      var task = that.tasks[i];
+      var aliapySelectQuery = my.createSelectorQuery();
+      var nodeRef = task.nodeRef;
+      var alipayNodeRef = void 0;
+      switch (nodeRef.cmd) {
+        case 'select':
+          alipayNodeRef = aliapySelectQuery.select(nodeRef.selector);
+          break;
+        case 'selectAll':
+          alipayNodeRef = aliapySelectQuery.selectAll();
+          break;
+        case 'selectViewport':
+          alipayNodeRef = aliapySelectQuery.selectViewport();
+          break;
+        default:
+          throw new Error(task.cmd);
+      }
+      switch (task.type) {
+        case 'boundingClientRect':
+          alipayNodeRef.boundingClientRect().exec(function (my_reses) {
+            return done(nodeRef, my_reses[0]);
+          });
+          break;
+        case 'context':
+          {
+            var node = getApp().onekit_nodes[_fix(nodeRef.selector)];
+            // const id = node.props.onekitId
+            /* let context
+            switch (node.is) {
+              case '/weixin2alipay/ui/canvas/canvas':
+                context = my.createCanvasContext(id)
+                break
+              case '/weixin2alipay/ui/video/video':
+                context = new VideoContext(my.createVideoContext(id), id)
+                break
+              default:
+                throw new Error(node.is)
+            } */
+            var context = node.getContext();
+            done(nodeRef, context);
+          }
+          break;
+        case 'fields':
+          alipayNodeRef.boundingClientRect().exec(function (my_reses) {
+            var my_res = my_reses[0];
+            var wx_res = {};
+            if (nodeRef.fields.size) {
+              wx_res.width = my_res.width;
+              wx_res.height = my_res.height;
+            }
+            if (nodeRef.fields.node && nodeRef.selector) {
+              // console.log('node', nodeRef.selector, getApp().onekit_nodes)
+              wx_res.node = getApp().onekit_nodes[_fix(nodeRef.selector)];
+            }
+            done(nodeRef, wx_res);
+          });
+          break;
+        case 'node':
+          done(nodeRef, getApp().onekit_nodes[_fix(nodeRef.selector)]);
+          break;
+        case 'scrollOffset':
+          alipayNodeRef.scrollOffset().exec(function (my_reses) {
+            var my_res = my_reses[0];
+            var wx_res = {
+              id: nodeRef.selector,
+              dataset: {},
+              scrollLeft: my_res.scrollLeft,
+              scrollTop: my_res.scrollTop,
+              scrollWidth: my_res.scroll,
+              scrollHeight: my_res.scrollHeight
+            };
+            done(nodeRef, wx_res);
+          });
+          break;
+        default:
+          throw new Error(task.type);
+      }
+    }
+    next();
+  };
+
+  return SelectorQuery;
+}();
+
+exports.default = SelectorQuery;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/* eslint-disable no-console */
+/* eslint-disable camelcase */
+var NodesRef = function () {
+  function NodesRef(weixinSelectQuery, cmd, selector) {
+    _classCallCheck(this, NodesRef);
+
+    this._selectQuery = weixinSelectQuery;
+    this.cmd = cmd;
+    this.selector = selector;
+  }
+
+  NodesRef.prototype.boundingClientRect = function boundingClientRect(callback) {
+    this.callback = callback;
+    this._selectQuery.tasks.push({ type: 'boundingClientRect', nodeRef: this });
+    return this._selectQuery;
+  };
+
+  NodesRef.prototype.context = function context(callback) {
+    this.callback = callback;
+    this._selectQuery.tasks.push({ type: 'context', nodeRef: this });
+    return this._selectQuery;
+  };
+
+  NodesRef.prototype.fields = function fields(_fields, callback) {
+    this.fields = _fields;
+    this.callback = callback;
+    this._selectQuery.tasks.push({ type: 'fields', nodeRef: this });
+    return this._selectQuery;
+  };
+
+  NodesRef.prototype.node = function node(callback) {
+    this.callback = callback;
+    this._selectQuery.tasks.push({ type: 'node', nodeRef: this });
+    return this._selectQuery;
+  };
+
+  NodesRef.prototype.scrollOffset = function scrollOffset(callback) {
+    this.callback = callback;
+    this._selectQuery.tasks.push({ type: 'scrollOffset', nodeRef: this });
+    return this._selectQuery;
+  };
+
+  return NodesRef;
+}();
+
+exports.default = NodesRef;
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2054,7 +2243,7 @@ function OnekitComponent(object) {
 }
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2245,7 +2434,7 @@ function OnekitPage(swan_object) {
 }
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
