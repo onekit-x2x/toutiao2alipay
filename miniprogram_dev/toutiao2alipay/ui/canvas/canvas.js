@@ -107,6 +107,7 @@ exports.default = {
   onInit: function onInit() {
     if (this.props.onekitId) {
       getApp().onekit_nodes['_' + this.props.onekitId] = this;
+      console.log();
     }
     //
     if (this.props.onekitClass) {
@@ -257,10 +258,36 @@ Component({
 
   didMount: function didMount() {
     var onekitId = this.props.canvasId || this.props.onekitId;
-    this.setData({ onekitId: onekitId });
+    this.ctx = my.createCanvasContext(this.props.onekitId);
+    this.setData({
+      onekitId: onekitId
+    });
   },
 
   methods: {
+    getContext: function getContext(type) {
+      switch (type) {
+        case '2d':
+          return this.ctx;
+        case 'webGL':
+          console.warn('xxx');
+          return {};
+        default:
+          throw new Error();
+      }
+    },
+    requestAnimationFrame: function requestAnimationFrame(callback) {
+      return setInterval(callback, 50);
+    },
+    cancelAnimationFrame: function cancelAnimationFrame(id) {
+      return clearInterval(id);
+    },
+
+    // createImage(){
+
+    //   // return
+    // },
+    //
     canvas_touchstart: function canvas_touchstart(_ref) {
       var detail = _ref.detail;
 

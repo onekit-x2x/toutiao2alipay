@@ -107,6 +107,7 @@ exports.default = {
   onInit: function onInit() {
     if (this.props.onekitId) {
       getApp().onekit_nodes['_' + this.props.onekitId] = this;
+      console.log();
     }
     //
     if (this.props.onekitClass) {

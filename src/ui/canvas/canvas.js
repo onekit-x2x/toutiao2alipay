@@ -13,10 +13,37 @@ Component({
 
   didMount() {
     const onekitId = this.props.canvasId || this.props.onekitId
-    this.setData({onekitId})
+    this.ctx = my.createCanvasContext(this.props.onekitId)
+    this.setData({
+      onekitId
+    })
   },
   methods: {
-    canvas_touchstart({detail}) {
+    getContext(type) {
+      switch (type) {
+        case '2d':
+          return this.ctx
+        case 'webGL':
+          console.warn('xxx')
+          return {}
+        default:
+          throw new Error()
+      }
+    },
+    requestAnimationFrame(callback) {
+      return setInterval(callback, 50)
+    },
+    cancelAnimationFrame(id) {
+      return clearInterval(id)
+    },
+    // createImage(){
+
+    //   // return
+    // },
+    //
+    canvas_touchstart({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onTouchstart) {
         this.props.onTouchstart({
@@ -27,7 +54,9 @@ Component({
         })
       }
     },
-    canvas_touchmove({detail}) {
+    canvas_touchmove({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onTouchmove) {
         this.props.onTouchmove({
@@ -38,7 +67,9 @@ Component({
         })
       }
     },
-    canvas_touchend({detail}) {
+    canvas_touchend({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onTouchend) {
         this.props.onTouchend({
@@ -49,7 +80,9 @@ Component({
         })
       }
     },
-    canvas_touchcancel({detail}) {
+    canvas_touchcancel({
+      detail
+    }) {
       const dataset = this._dataset()
       if (this.props.onTouchcancel) {
         this.props.onTouchcancel({

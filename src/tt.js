@@ -4,6 +4,7 @@
 
 import PROMISE from 'oneutil/PROMISE'
 import SelectorQuery from './api/SelectorQuery'
+import RenderingContext from './api/RenderingContext'
 
 export default class tt {
   // ///////////  基础 ////////////
@@ -1163,6 +1164,10 @@ export default class tt {
   // ////// canvas  ///////
   static createCanvasContext(id) {
     return my.createCanvasContext(id)
+  }
+
+  static RenderingContext(canvasId) {
+    return new RenderingContext(my.createCanvasContext(canvasId))
   }
 
   static createOffscreenCanvas() {

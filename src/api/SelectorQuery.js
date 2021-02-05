@@ -49,6 +49,7 @@ export default class SelectorQuery {
         next()
         return
       }
+
       callback(results)
     }
 
@@ -70,6 +71,7 @@ export default class SelectorQuery {
         default:
           throw new Error(task.cmd)
       }
+      const wx_res = {}
       switch (task.type) {
         case 'boundingClientRect':
           alipayNodeRef.boundingClientRect().exec((my_reses) => done(nodeRef, my_reses[0]))
@@ -89,27 +91,31 @@ export default class SelectorQuery {
               throw new Error(node.is)
           } */
           const context = node.getContext()
-          done(nodeRef, context)
+          wx_res.context = context
+          done(nodeRef, wx_res)
         }
           break
         case 'fields':
           alipayNodeRef.boundingClientRect().exec((my_reses) => {
             const my_res = my_reses[0]
-            const wx_res = {}
             if (nodeRef.fields.size) {
               wx_res.width = my_res.width
               wx_res.height = my_res.height
             }
             if (nodeRef.fields.node && nodeRef.selector) {
-            // console.log('node', nodeRef.selector, getApp().onekit_nodes)
               wx_res.node = getApp().onekit_nodes[_fix(nodeRef.selector)]
             }
             done(nodeRef, wx_res)
           })
           break
+
         case 'node':
-          done(nodeRef, getApp().onekit_nodes[_fix(nodeRef.selector)])
+          if (nodeRef.selector) {
+            wx_res.node = getApp().onekit_nodes[_fix(nodeRef.selector)]
+          }
+          done(nodeRef, wx_res)
           break
+
         case 'scrollOffset':
           alipayNodeRef.scrollOffset().exec((my_reses) => {
             const my_res = my_reses[0]
