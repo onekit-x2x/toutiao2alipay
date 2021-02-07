@@ -2,42 +2,50 @@
 /* eslint-disable camelcase */
 export default class Image {
   set src(src) {
-    if (src) {
-      this.src = my.getImageInfo().src
+    this._src = src
+    if (!this.onload) {
+      return
     }
+    my.getImageInfo({
+      src,
+      success: (res) => {
+        this._width = res.width
+        this._height = res.height
+        this.onload()
+      },
+      fail: (err) => {
+        if (this.onerror) {
+          this.onerror(err.errMsg)
+        }
+      }
+    })
   }
 
   get src() {
-    return this.src
+    return this._src
   }
 
   get width() {
-    if (my.getImageInfo().src) {
-      my.getImageInfo({
-        success: res => {
-          this.width = res.width
-        }
-      })
-    }
-    return this.width
+    return this._width
   }
 
   get height() {
-    if (my.getImageInfo().src) {
-      my.getImageInfo({
-        success: res => {
-          this.height = res.height
-        }
-      })
-    }
-    return this.height
+    return this._height
   }
 
-  onload() {
-    this.ctx.drawImage()
+  set onload(onload) {
+    this._onload = onload
   }
 
-  onerror(err) {
-    return this.onerror(err)
+  get onload() {
+    return this._onload
+  }
+
+  set onerror(onerror) {
+    this._onerror = onerror
+  }
+
+  get onerror() {
+    return this._onerror
   }
 }

@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 export default class CanvasContext {
   constructor(alipayCanvasContext) {
     this.alipayCanvasContext = alipayCanvasContext
-    this.alipayCanvasContext.setFillStyle('#000')
   }
 
   arc(x, y, radius, startAngle, endAngle) {
@@ -51,14 +51,9 @@ export default class CanvasContext {
     return this.alipayCanvasContext.createRadialGradient(x0, y0, r0, x1, y1, r1)
   }
 
-  drawImage(imageResource, sx, sy) {
-    const sWidth = 0
-    const sHeight = 0
-    const dx = 0
-    const dy = 0
-    const dWidth = 0
-    const dHeight = 0
-    return this.alipayCanvasContext.drawImage(imageResource, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+  drawImage(image, sx, sy, sWidth = image.width, sHeight = image.height, dx = 0, dy = 0, dWidth = image.width, dHeight = image.height) {
+    this.alipayCanvasContext.drawImage(image.src, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+    this.alipayCanvasContext.draw()
   }
 
   ellipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle) {

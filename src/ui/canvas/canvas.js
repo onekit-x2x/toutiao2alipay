@@ -2,6 +2,8 @@
 /* eslint-disable camelcase */
 import onekit_behavior from '../../behavior/onekit_behavior'
 import toutiao_behavior from '../../behavior/toutiao_behavior'
+import RenderingContext from '../../api/RenderingContext'
+import Image from '../../api/Image'
 
 Component({
   mixins: [onekit_behavior, toutiao_behavior],
@@ -13,7 +15,6 @@ Component({
 
   didMount() {
     const onekitId = this.props.canvasId || this.props.onekitId
-    this.ctx = my.createCanvasContext(this.props.onekitId)
     this.setData({
       onekitId
     })
@@ -22,7 +23,7 @@ Component({
     getContext(type) {
       switch (type) {
         case '2d':
-          return this.ctx
+          return new RenderingContext(my.createCanvasContext(this.data.onekitId))
         case 'webGL':
           console.warn('xxx')
           return {}
@@ -36,11 +37,10 @@ Component({
     cancelAnimationFrame(id) {
       return clearInterval(id)
     },
-    // createImage(){
+    createImage() {
+      return new Image()
+    },
 
-    //   // return
-    // },
-    //
     canvas_touchstart({
       detail
     }) {
