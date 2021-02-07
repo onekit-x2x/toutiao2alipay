@@ -266,6 +266,7 @@ Component({
 
   didMount: function didMount() {
     var onekitId = this.props.canvasId || this.props.onekitId;
+    // this.Rctx = new RenderingContext(my.createCanvasContext(this.data.onekitId))
     this.setData({
       onekitId: onekitId
     });
@@ -276,6 +277,7 @@ Component({
       switch (type) {
         case '2d':
           return new _RenderingContext2.default(my.createCanvasContext(this.data.onekitId));
+        // return this.Rctx
         case 'webGL':
           console.warn('xxx');
           return {};
@@ -284,10 +286,10 @@ Component({
       }
     },
     requestAnimationFrame: function requestAnimationFrame(callback) {
-      return setInterval(callback, 50);
+      return setTimeout(callback, 0);
     },
     cancelAnimationFrame: function cancelAnimationFrame(id) {
-      return clearInterval(id);
+      return clearTimeout(id);
     },
     createImage: function createImage() {
       return new _Image2.default();
@@ -608,26 +610,28 @@ var CanvasContext = function () {
   _createClass(CanvasContext, [{
     key: 'fillStyle',
     set: function set(color) {
-      this.fillStyle = color;
+      this._fillStyle = color;
+      this.alipayCanvasContext.setFillStyle(color);
     },
     get: function get() {
-      return this.fillStyle;
+      return this._fillStyle;
     }
   }, {
     key: 'font',
-    set: function set(fontSize) {
-      this.font = fontSize;
+    set: function set(value) {
+      this._font = value;
     },
     get: function get() {
-      return this.font;
+      return this._font;
     }
   }, {
     key: 'globalAlpha',
     set: function set(alpha) {
-      this.globalAlpha = alpha;
+      this._globalAlpha = alpha;
+      this.alipayCanvasContext.setGlobalAlpha(alpha);
     },
     get: function get() {
-      return this.globalAlpha;
+      return this._globalAlpha;
     }
 
     //
@@ -635,10 +639,10 @@ var CanvasContext = function () {
   }, {
     key: 'globalCompositeOperation',
     set: function set(type) {
-      this.globalCompositeOperation = type;
+      this._globalCompositeOperation = type;
     },
     get: function get() {
-      return this.globalCompositeOperation;
+      return this._globalCompositeOperation;
     }
 
     //
@@ -646,18 +650,19 @@ var CanvasContext = function () {
   }, {
     key: 'imageSmoothingEnabled',
     set: function set(value) {
-      this.imageSmoothingEnabled = value;
+      this._imageSmoothingEnabled = value;
     },
     get: function get() {
-      return this.imageSmoothingEnabled;
+      return this._imageSmoothingEnabled;
     }
   }, {
     key: 'lineCap',
     set: function set(lineCap) {
-      this.lineCap = lineCap;
+      this._lineCap = lineCap;
+      this.alipayCanvasContext.setLineCap(lineCap);
     },
     get: function get() {
-      return this.lineCap;
+      return this._lineCap;
     }
 
     //
@@ -665,10 +670,10 @@ var CanvasContext = function () {
   }, {
     key: 'lineDashOffset',
     set: function set(offset) {
-      this.lineDashOffset = offset;
+      this._offset = offset;
     },
     get: function get() {
-      return this.lineDashOffset;
+      return this._offset;
     }
 
     //
@@ -676,34 +681,34 @@ var CanvasContext = function () {
   }, {
     key: 'lineJoin',
     set: function set(lineJoin) {
-      this.lineJoin = lineJoin;
+      this._lineJoin = lineJoin;
     },
     get: function get() {
-      return this.lineJoin;
+      return this._lineJoin;
     }
   }, {
     key: 'lineWidth',
     set: function set(lineWidth) {
-      this.lineWidth = lineWidth;
+      this._lineWidth = lineWidth;
     },
     get: function get() {
-      return this.lineWidth;
+      return this._lineWidth;
     }
   }, {
     key: 'miterLimit',
     set: function set(miterLimit) {
-      this.miterLimit = miterLimit;
+      this._miterLimit = miterLimit;
     },
     get: function get() {
-      return this.miterLimit;
+      return this._miterLimit;
     }
   }, {
     key: 'shadowColor',
     set: function set(color) {
-      this.shadowColor = color;
+      this._shadowColor = color;
     },
     get: function get() {
-      return this.hadowColor;
+      return this._hadowColor;
     }
 
     //
@@ -711,10 +716,10 @@ var CanvasContext = function () {
   }, {
     key: 'shadowBlur',
     set: function set(level) {
-      this.shadowBlur = level;
+      this._shadowBlur = level;
     },
     get: function get() {
-      return this.shadowBlur;
+      return this._shadowBlur;
     }
 
     //
@@ -722,10 +727,10 @@ var CanvasContext = function () {
   }, {
     key: 'shadowOffsetX',
     set: function set(offset) {
-      this.shadowOffsetX = offset;
+      this._shadowOffsetX = offset;
     },
     get: function get() {
-      return this.shadowOffsetX;
+      return this._shadowOffsetX;
     }
 
     //
@@ -733,10 +738,10 @@ var CanvasContext = function () {
   }, {
     key: 'shadowOffsetY',
     set: function set(offset) {
-      this.shadowOffsetY = offset;
+      this._shadowOffsetY = offset;
     },
     get: function get() {
-      return this.shadowOffsetY;
+      return this._shadowOffsetY;
     }
   }, {
     key: 'strokeStyle',
@@ -750,10 +755,10 @@ var CanvasContext = function () {
     key: 'textAlign',
     set: function set(align) {
       align = 'left' || false || false || false || false;
-      this.textAlign = align;
+      this._textAlign = align;
     },
     get: function get() {
-      return this.textAlign;
+      return this._textAlign;
     }
 
     //
@@ -762,10 +767,10 @@ var CanvasContext = function () {
     key: 'textBaseline',
     set: function set(vertical) {
       vertical = 'top' || false || false || false || false || false;
-      this.textBaseline = vertical;
+      this._textBaseline = vertical;
     },
     get: function get() {
-      return this.textBaseline;
+      return this._textBaseline;
     }
   }]);
 

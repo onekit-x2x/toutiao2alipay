@@ -32,10 +32,13 @@ Component({
       }
     },
     requestAnimationFrame(callback) {
-      return setInterval(callback, 50)
+      // (function () {
+      //   return setTimeout(callback, 0)
+      // }())
+      return setTimeout(callback, 0)
     },
     cancelAnimationFrame(id) {
-      return clearInterval(id)
+      return clearTimeout(id)
     },
     createImage() {
       return new Image()

@@ -82,11 +82,12 @@ export default class CanvasContext {
 
   //
   set fillStyle(color) {
-    this.fillStyle = color
+    this._fillStyle = color
+    this.alipayCanvasContext.setFillStyle(color)
   }
 
   get fillStyle() {
-    return this.fillStyle
+    return this._fillStyle
   }
 
   fillText(text, x, y, maxWidth = 0) {
@@ -95,12 +96,12 @@ export default class CanvasContext {
   }
 
   //
-  set font(fontSize) {
-    this.font = fontSize
+  set font(value) {
+    this._font = value
   }
 
   get font() {
-    return this.font
+    return this._font
   }
 
   getImageData(sx, sy, sw, sh) {
@@ -115,29 +116,30 @@ export default class CanvasContext {
 
   //
   set globalAlpha(alpha) {
-    this.globalAlpha = alpha
+    this._globalAlpha = alpha
+    this.alipayCanvasContext.setGlobalAlpha(alpha)
   }
 
   get globalAlpha() {
-    return this.globalAlpha
+    return this._globalAlpha
   }
 
   //
   set globalCompositeOperation(type) {
-    this.globalCompositeOperation = type
+    this._globalCompositeOperation = type
   }
 
   get globalCompositeOperation() {
-    return this.globalCompositeOperation
+    return this._globalCompositeOperation
   }
 
   //
   set imageSmoothingEnabled(value) {
-    this.imageSmoothingEnabled = value
+    this._imageSmoothingEnabled = value
   }
 
   get imageSmoothingEnabled() {
-    return this.imageSmoothingEnabled
+    return this._imageSmoothingEnabled
   }
 
   isPointInPath(x, y, path = '') {
@@ -152,29 +154,30 @@ export default class CanvasContext {
 
   //
   set lineCap(lineCap) {
-    this.lineCap = lineCap
+    this._lineCap = lineCap
+    this.alipayCanvasContext.setLineCap(lineCap)
   }
 
   get lineCap() {
-    return this.lineCap
+    return this._lineCap
   }
 
   //
   set lineDashOffset(offset) {
-    this.lineDashOffset = offset
+    this._offset = offset
   }
 
   get lineDashOffset() {
-    return this.lineDashOffset
+    return this._offset
   }
 
   //
   set lineJoin(lineJoin) {
-    this.lineJoin = lineJoin
+    this._lineJoin = lineJoin
   }
 
   get lineJoin() {
-    return this.lineJoin
+    return this._lineJoin
   }
 
   lineTo(x, y) {
@@ -184,11 +187,11 @@ export default class CanvasContext {
 
   //
   set lineWidth(lineWidth) {
-    this.lineWidth = lineWidth
+    this._lineWidth = lineWidth
   }
 
   get lineWidth() {
-    return this.lineWidth
+    return this._lineWidth
   }
 
   measureText(width) {
@@ -198,11 +201,11 @@ export default class CanvasContext {
 
   //
   set miterLimit(miterLimit) {
-    this.miterLimit = miterLimit
+    this._miterLimit = miterLimit
   }
 
   get miterLimit() {
-    return this.miterLimit
+    return this._miterLimit
   }
 
   moveTo(x, y) {
@@ -257,38 +260,38 @@ export default class CanvasContext {
 
   //
   set shadowColor(color) {
-    this.shadowColor = color
+    this._shadowColor = color
   }
 
   get shadowColor() {
-    return this.hadowColor
+    return this._hadowColor
   }
 
   //
   set shadowBlur(level) {
-    this.shadowBlur = level
+    this._shadowBlur = level
   }
 
   get shadowBlur() {
-    return this.shadowBlur
+    return this._shadowBlur
   }
 
   //
   set shadowOffsetX(offset) {
-    this.shadowOffsetX = offset
+    this._shadowOffsetX = offset
   }
 
   get shadowOffsetX() {
-    return this.shadowOffsetX
+    return this._shadowOffsetX
   }
 
   //
   set shadowOffsetY(offset) {
-    this.shadowOffsetY = offset
+    this._shadowOffsetY = offset
   }
 
   get shadowOffsetY() {
-    return this.shadowOffsetY
+    return this._shadowOffsetY
   }
 
   stroke() {
@@ -318,21 +321,21 @@ export default class CanvasContext {
   //
   set textAlign(align) {
     align = 'left' || 'right' || 'center' || 'start' || 'end'
-    this.textAlign = align
+    this._textAlign = align
   }
 
   get textAlign() {
-    return this.textAlign
+    return this._textAlign
   }
 
   //
   set textBaseline(vertical) {
     vertical = 'top' || 'hanging' || 'middle' || 'alphabetic' || 'ideographic' || 'bottom'
-    this.textBaseline = vertical
+    this._textBaseline = vertical
   }
 
   get textBaseline() {
-    return this.textBaseline
+    return this._textBaseline
   }
 
   transform(scaleX, skewX, skewY, scaleY, translateX, translateY) {

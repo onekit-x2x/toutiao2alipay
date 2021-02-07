@@ -413,7 +413,6 @@ OnekitPage({
     draw_native:function(id,type){
       tt.createSelectorQuery().select(id).node().exec((res)=>{
       const canvas = res[0].node
-      console.log(id,res)
       var ctx = canvas.getContext(type)
       this.draw_byType(ctx,type,canvas)
     })
