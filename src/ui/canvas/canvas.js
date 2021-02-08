@@ -25,16 +25,13 @@ Component({
         case '2d':
           return new RenderingContext(my.createCanvasContext(this.data.onekitId))
         case 'webGL':
-          console.warn('xxx')
-          return {}
+          // console.warn('xxx')
+          return 'webGL is not support'
         default:
-          throw new Error()
+          throw new Error('webGL is not support')
       }
     },
     requestAnimationFrame(callback) {
-      // (function () {
-      //   return setTimeout(callback, 0)
-      // }())
       return setTimeout(callback, 0)
     },
     cancelAnimationFrame(id) {
